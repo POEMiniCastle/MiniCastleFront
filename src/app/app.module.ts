@@ -32,6 +32,10 @@ import { CardHolderComponent } from './shared/card-holder/card-holder.component'
 import { CreationCardComponent } from './feature/creation-card/creation-card.component';
 import { FormulaireComponent } from './shared/formulaire/formulaire.component';
 import { PlayerCombatInterfaceComponent } from './layout/player-combat-interface/player-combat-interface.component';
+import { MonsterCardComponent } from './shared/card/monster-card/monster-card.component';
+import { AdDirective } from './ad.directive';
+import { TreasureCardComponent } from './shared/card/treasure-card/treasure-card.component';
+import { TrapCardComponent } from './shared/card/trap-card/trap-card.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,11 @@ import { PlayerCombatInterfaceComponent } from './layout/player-combat-interface
     CardHolderComponent,
     CreationCardComponent,
     FormulaireComponent,
-    PlayerCombatInterfaceComponent
+    PlayerCombatInterfaceComponent,
+    MonsterCardComponent,
+    AdDirective,
+    TreasureCardComponent,
+    TrapCardComponent
   ],
   imports: [
     BrowserModule,

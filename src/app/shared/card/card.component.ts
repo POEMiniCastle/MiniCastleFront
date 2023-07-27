@@ -1,9 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
-import { Observable, concatMap, delay, filter, map } from 'rxjs';
+import { Component, Input, Type, ViewChild } from '@angular/core';
+import { AdDirective } from 'src/app/ad.directive';
 import { Card } from 'src/app/core/entities/card';
-import { Monster } from 'src/app/core/entities/monster';
-import { CardService } from 'src/app/services/card/card.service';
+import { MonsterCardComponent } from './monster-card/monster-card.component';
+import { TreasureCardComponent } from './treasure-card/treasure-card.component';
+import { TrapCardComponent } from './trap-card/trap-card.component';
 
 @Component({
   selector: 'app-card',
@@ -22,58 +23,70 @@ import { CardService } from 'src/app/services/card/card.service';
     ])
   ]
 })
+
 export class CardComponent {
-  cards$: Observable<Card[]> | any;
-
-  flip: string = 'active';
-
-  cardMonster: Card[] = [];
-  card: Card = {
-    id: 0,
-    card_image_path: '',
-    card_name: '',
-    card_type: '',
-    description: '',
-    score_value: 0
-  };
-
-  hp:number = 18;
-  dmg:number = 50;
-
-  constructor(private cardService: CardService){ }
-
-  ngOnInit(): void {
-    //this.cards$ = this.cardService.getCard();
-    //this.peupleTaBDD(this.cards$);
-
-    this.cardService.getCard()
-    .pipe(
-      concatMap(cardMonster => cardMonster),
-      filter(card => card.card_type == "Monster")
-      )
-      .subscribe((res) => {
-        console.log(res);
-      })
-  }
+  @ViewChild(AdDirective, {static: true}) adHost!: AdDirective;
+  @Input() card!: Card;
 
   toggleFlip() {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
   }
 
-//   peupleTaBDD(observable: Observable<Card[]>){
-//     observable.forEach((data:any) => {
-//       this.card = {
-//         id: data.id,
-//         card_image_path: data.card_image_path,
-//         card_name: data.card_name,
-//         card_type: data.card_type,
-//         description: data.description,
-//         score_value: data.score_value 
-//       };
-//       console.log("Avant " + this.cardMonster); 
-//       this.cardMonster?.push(this.card);  
-//       console.log("Après " +this.cardMonster); 
-//     });
-//     console.log(this.cardMonster);  
-// }
+  flip: string = 'active';
+
+  ngOnInit():void{
+    this.loadComponent();
+  }
+  
+  loadComponent(){
+    const viewContainerRef = this.adHost.viewContainerRef;
+    viewContainerRef.clear();
+    const componentRef = viewContainerRef.createComponent(this.getContentType());
+    componentRef.instance.card = this.card;
+  }
+
+  getContentType():Type<any>{
+    switch (this.card?.card_type) {
+      case "Monster":
+        return MonsterCardComponent;
+      break;
+    case "Treasure":
+        return TreasureCardComponent;
+      break;
+    case "Trap":
+        return TrapCardComponent;
+      break;
+    default:
+      return TreasureCardComponent;
+    }  
+  }
+
+  // cards$: Observable<Card[]> | any;
+  // cardMonster: Card[] = [];
+  // card: Card = {
+  //   id: 0,
+  //   card_image_path: '',
+  //   card_name: '',
+  //   card_type: '',
+  //   description: '',
+  //   score_value: 0
+  // };
+
+  // hp:number = 18;
+  // dmg:number = 50;
+  // constructor(private cardService: CardService){ }
+
+  // ngOnInit(): void {
+  //   this.cardService.getCard()
+  //   .pipe(
+  //     concatMap(cardMonster => cardMonster),
+  //     filter(card => card.card_type == "Monster")
+  //     )
+  //     .subscribe((res) => {
+  //       console.log(res);
+  //     })
+  // }
+
+ 
+
 }

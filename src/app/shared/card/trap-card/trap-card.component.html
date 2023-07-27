@@ -1,0 +1,19 @@
+<div class="hide">
+    <div class="hp-damage" role="group">
+        <span id="hp"></span>
+
+        <span id="damage">{{ dmg }}</span>
+    </div>
+
+    <div [ngClass]="(flip == 'active') ? 'img-monster' : ''">
+        <img src="assets/placeholder.png" id="imageMonster">
+    </div>
+
+    <div class="description">
+        <h5 id="cardName">{{ card?.card_name }}</h5>
+        <p id="cardDescription">
+            {{ card?.description }}
+        </p>
+        <span class="material-symbols-outlined" style="color: #e3c724;">warning</span>
+    </div>
+</div>

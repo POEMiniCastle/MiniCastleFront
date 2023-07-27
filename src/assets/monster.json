@@ -1,0 +1,19 @@
+
+    [
+        { 
+            "card_id": "1",
+            "card_image_path": "string",
+            "card_name": "string",
+            "card_type": "monster",
+            "description": "string",
+            "score_value": 5
+        },
+        { 
+            "card_id": "2",
+            "card_image_path": "string",
+            "card_name": "string",
+            "card_type": "monster",
+            "description": "string",
+            "score_value": 5
+        }
+    ]

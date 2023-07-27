@@ -1,9 +1,11 @@
 <div class="template-card" (click)="toggleFlip()" [@flipState]="flip" [ngClass]=" (flip == 'active') ? 'card_back' : 'card_front'">
-    <div class="logo" *ngIf="(flip == 'active')">
-    </div>
-    <div class="hide">
+    <!-- <div class="logo" *ngIf="(flip == 'active')">
+    </div> -->
+    <ng-template adHost>
+    </ng-template>
+    <!-- <div class="hide">
         <div id="hp-damage" role="group">
-            <span id="hp">{{ hp }}</span>
+            <span id="hp">{{ data }}</span>
 
             <span id="damage">{{ dmg }}</span>
         </div>
@@ -13,14 +15,13 @@
         </div>
 
         <div id="description">
-            <h5>{{ hp }}</h5>
+            <h5>{{ top.card_name }}</h5>
             <p>
-                {{ dmg }}
+                {{ top.description }}
             </p>
             <span class="material-symbols-outlined" style="color: #931621;">skull</span>
         </div>
-
-        
-    </div>
+    </div> -->
+    
 </div>
 
