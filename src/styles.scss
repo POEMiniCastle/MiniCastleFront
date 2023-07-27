@@ -1,0 +1,17 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import 'bootstrap/scss/bootstrap';
+
+.row{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.container{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+}
+html, body { height: 100% !important; padding-top: 0 !important; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

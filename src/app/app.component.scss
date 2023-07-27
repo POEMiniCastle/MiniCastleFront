@@ -1,0 +1,29 @@
+mat-toolbar{
+   background: #E7E7E7; 
+   
+}
+
+header{
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    padding-right: auto;
+}
+mat-sidenav-container{
+    background: none;
+    z-index: 5;
+}
+
+mat-list-item{
+    vertical-align: middle;
+}
+
+span{
+    vertical-align: middle;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+mat-sidenav-content{
+    z-index: 0;
+}

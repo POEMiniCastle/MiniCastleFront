@@ -1,0 +1,26 @@
+<div class="template-card" (click)="toggleFlip()" [@flipState]="flip" [ngClass]=" (flip == 'active') ? 'card_back' : 'card_front'">
+    <div class="logo" *ngIf="(flip == 'active')">
+    </div>
+    <div class="hide">
+        <div id="hp-damage" role="group">
+            <span id="hp">{{ hp }}</span>
+
+            <span id="damage">{{ dmg }}</span>
+        </div>
+
+        <div [ngClass]="(flip == 'active') ? 'img-monster' : ''">
+            <img src="assets/placeholder.png">
+        </div>
+
+        <div id="description">
+            <h5>{{ hp }}</h5>
+            <p>
+                {{ dmg }}
+            </p>
+            <span class="material-symbols-outlined" style="color: #931621;">skull</span>
+        </div>
+
+        
+    </div>
+</div>
+

@@ -1,0 +1,55 @@
+mat-card {
+    border-radius: 30px 30px 30px 30px  !important;
+    width: 12rem !important;
+  }
+
+.content {
+    box-sizing: border-box;
+    border-radius: 30px 30px 30px 30px  !important;
+  }
+  
+#hp-damage{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    font-weight: bolder;
+    font-size: 0.86vw;
+
+    #hp{
+        background-color: red;
+        border-radius: 30px 0px 25px 0px;
+        padding: 15px 20px 15px 20px;
+    }
+
+    #damage{
+        justify-content: end;
+        background-color: red;
+        border-radius: 0px 30px 0px 25px;
+        padding: 15px 20px 15px 20px;
+    }
+  }
+  
+img{
+    width: 5rem;
+    margin-left: 20%;
+    margin-right: 10px;
+}
+
+mat-card-title {
+    font-size: 0.70vw;
+    margin-bottom: 10%;
+}
+
+p{
+    font-size: 0.45vw;
+}
+
+mat-card-footer{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

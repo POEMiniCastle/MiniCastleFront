@@ -1,0 +1,8 @@
+.container{
+    width: 100%;
+}
+@media (width > 1200px) {
+    .container{
+        width: 50%;
+    }
+}

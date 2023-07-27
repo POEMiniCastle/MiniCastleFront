@@ -1,0 +1,109 @@
+// #region @MediaScreen
+// Using for the SVG & font responsivity 
+@media (width > 1600px) {
+    #triangle {
+        width: 101.8%;
+    }
+    a{font-size: 28px;}
+  }
+
+  @media (width > 1400px) {
+    #triangle {
+        width: 102.8%;
+    }
+    a{font-size: 28px;}
+  }
+@media (width < 1400px) {
+    #triangle {
+        width: 104%;
+    }
+    a{font-size: 20px;}
+  }
+@media (width < 1000px) {
+    #triangle {
+        width: 105.5%;
+    }
+    ul{ margin-left: -10%;}
+  }
+@media (width < 800px) {
+    #triangle {
+        width: 107%;
+    }
+  }
+@media (width < 500px) {
+    #triangle { width: 108% ;}
+    a{font-size: 15px;}
+    ul{ margin-left: -10%;}
+  }
+// #endregion
+
+// #region Template Background Flag
+#Connection{
+    padding-top: 2%;
+    background-color: #E7E7E7;
+    justify-content: center;
+    height: 60vh;
+    border-radius: 25px 25px 0px 0px;
+    margin-top: 5%;
+    padding-top: 5%;
+}
+
+#triangle {
+    margin-top: -15%;
+    padding-left: 0 !important;
+}
+
+#svg{
+    padding-left: 0 !important;
+}
+
+// #endregion
+
+form{
+    padding-top: 10%;
+    text-align: center;
+    justify-content: center;
+}
+
+#container {
+    background-color: var(--main-bg-color);
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+h1{
+    margin-left: 10%;
+}
+
+input {
+    background-color: var(--main-bg-color);
+    border: none;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    width: 80%;
+    padding-bottom: 5% ;
+}
+
+.input_field {
+    margin-bottom: 20px;
+}
+
+.error_msg {
+    color: red;
+}
+
+button {
+    background-color: white;
+    border-radius: 20px;
+    position: absolute;
+    display: block;
+    margin-left: 2%;
+    font-size: small;
+}
+
+button:hover {
+    background-color: #555555;
+    color: white;
+}
+

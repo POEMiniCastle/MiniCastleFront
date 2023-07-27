@@ -1,0 +1,81 @@
+<main class="container">
+    <div class='row '>
+        <div id="Connection" class="col col-4 offset-4">
+            <ng-container>
+                <div *ngIf="token === 'register'; else connection" class="center-form">
+                    <h1>Inscription.</h1>
+                    <form [formGroup]="form" (ngSubmit)="submitRegistration()">
+                        <div class="input_field">
+                            <input type="text" formControlName="username" id="username" placeholder="Username">
+
+                            <span *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+                                <br>
+                                <span class="error_msg" *ngIf="f['username'].errors?.['required']">Username required</span>
+                            </span>
+                        </div>
+                        <div class="input_field">
+                            <input type="text" formControlName="email" id="email" placeholder="E-mail">
+                        
+                            <span *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">
+                                <br>
+                                <span class="error_msg" *ngIf="f['email'].errors?.['required']">E-mail required</span>
+                                <span class="error_msg" *ngIf="f['email'].errors?.['email']">Not a valid E-mail</span>
+                            </span>
+                        </div>
+                        <div class="input_field">
+                            <input type="password" formControlName="password" id="password" placeholder="Password">
+                        
+                            <span *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+                                <br>
+                                <span class="error_msg" *ngIf="f['password'].errors?.['required']">Password required</span>
+                                <span class="error_msg" *ngIf="f['password'].errors?.['minlength']">The password is too small</span>
+                            </span>
+                        </div>
+                        <div class="input_field"> 
+                            <input type="password" formControlName="confirmPassword" id="confirmPassword" placeholder="Confirm password">
+                        
+                            <span *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].dirty || f['confirmPassword'].touched)">
+                                <br>
+                                <span class="error_msg" *ngIf="f['confirmPassword'].errors?.['required']">Please confirm your password</span>
+                                <span class="error_msg" *ngIf="f['confirmPassword'].errors?.['confirmedValidator']">Password and Confirm Password must be match.</span>
+                            </span>
+                        </div>
+                        <button type="submit" class="btn btn-light btn-lg" [disabled]="!form.valid" >SUBMIT</button>
+                    </form>
+                </div>
+            </ng-container>
+            <ng-template #connection>
+                <div class="center-form">
+                    <h1>Connection.</h1>
+                    <form [formGroup]="form" (ngSubmit)="submitConnection()">
+                        <div class="input_field">
+                            <input type="text" formControlName="username" id="username" placeholder="Username">
+                
+                            <span *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+                                <br>
+                                <span class="error_msg" *ngIf="f['username'].errors?.['required']">Username required</span>
+                            </span>
+                        </div>
+                        <div class="input_field">
+                            <input type="password" formControlName="password" id="password" placeholder="Password">
+                        
+                            <span *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+                                <br>
+                                <span class="error_msg" *ngIf="f['password'].errors?.['required']">Password required</span>
+                                <span class="error_msg" *ngIf="f['password'].errors?.['minlength']">The password is too small</span>
+                            </span>
+                        </div>
+                        <button type="submit" class="btn btn-light btn-lg" [disabled]="!form.valid">SUBMIT</button>
+                    </form>
+                </div>
+            </ng-template>
+        </div>     
+    </div>
+    <div class='row'>
+        <div class="col col-4 offset-4" id="svg">
+            <div id="triangle">
+                <img src="..\..\..\assets\inscription.svg" alt="">
+            </div>
+        </div>
+    </div>
+</main>

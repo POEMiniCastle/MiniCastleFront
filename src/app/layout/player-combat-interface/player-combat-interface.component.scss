@@ -1,0 +1,27 @@
+footer {
+    display: flex;
+    position: relative;
+    bottom: 0;
+    background-color: #D9D9D9;
+    
+}
+
+.zoupette{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+a{
+    color: black;
+    opacity: 50%;
+    font-size: larger;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+a:hover{
+    color: black;
+    opacity: 100%;
+}
