@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    min-height: 92.5%;
+    max-height: 93%;
+    justify-content: center;
+    margin: auto;
+}
+
+#card{
+    position: absolute;
+    top: 20%;
+}
+footer{
+    margin-top: auto;
+}
+
+#test{
+    bottom: 0;
+    transform: translateY(150px);
+    position: absolute;
+    z-index: 2;
+    transition:all .5s ease-in-out;
+    margin-left: 30%;
+}
+
+#test:hover{
+    transform: translateY(0px); 
+}
+
+
+

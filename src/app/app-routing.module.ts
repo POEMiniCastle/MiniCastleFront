@@ -8,6 +8,7 @@ import { TableComponent } from './shared/table/table.component';
 import { CreationCardComponent } from './feature/creation-card/creation-card.component';
 import { MapComponent } from './feature/map/map.component';
 import { TestComponent } from './feature/test/test.component';
+import { CombatPageComponent } from './feature/combat-page/combat-page.component';
 
 const routes: Routes = [
   {
@@ -43,7 +44,10 @@ const routes: Routes = [
     path: 'play',
     component: MapComponent
   },
-
+  {
+    path: 'combat',
+    component: CombatPageComponent
+  },
 
 
 ];

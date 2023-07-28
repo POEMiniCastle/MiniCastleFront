@@ -36,6 +36,7 @@ import { MonsterCardComponent } from './shared/card/monster-card/monster-card.co
 import { AdDirective } from './ad.directive';
 import { TreasureCardComponent } from './shared/card/treasure-card/treasure-card.component';
 import { TrapCardComponent } from './shared/card/trap-card/trap-card.component';
+import { CombatPageComponent } from './feature/combat-page/combat-page.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { TrapCardComponent } from './shared/card/trap-card/trap-card.component';
     MonsterCardComponent,
     AdDirective,
     TreasureCardComponent,
-    TrapCardComponent
+    TrapCardComponent,
+    CombatPageComponent
   ],
   imports: [
     BrowserModule,

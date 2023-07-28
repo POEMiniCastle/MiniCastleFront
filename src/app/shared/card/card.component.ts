@@ -5,6 +5,7 @@ import { Card } from 'src/app/core/entities/card';
 import { MonsterCardComponent } from './monster-card/monster-card.component';
 import { TreasureCardComponent } from './treasure-card/treasure-card.component';
 import { TrapCardComponent } from './trap-card/trap-card.component';
+import { Monster } from 'src/app/core/entities/monster';
 
 @Component({
   selector: 'app-card',
@@ -27,12 +28,7 @@ import { TrapCardComponent } from './trap-card/trap-card.component';
 export class CardComponent {
   @ViewChild(AdDirective, {static: true}) adHost!: AdDirective;
   @Input() card!: Card;
-
-  toggleFlip() {
-    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
-  }
-
-  flip: string = 'active';
+  @Input() monsterCard! : Monster;
 
   ngOnInit():void{
     this.loadComponent();
@@ -57,10 +53,15 @@ export class CardComponent {
         return TrapCardComponent;
       break;
     default:
-      return TreasureCardComponent;
+      return TrapCardComponent;
     }  
   }
 
+  toggleFlip() {
+    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
+  }
+
+  flip: string = 'active';
   // cards$: Observable<Card[]> | any;
   // cardMonster: Card[] = [];
   // card: Card = {

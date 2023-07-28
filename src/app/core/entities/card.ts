@@ -5,4 +5,5 @@ export interface Card {
     card_type: string;
     description: string;
     score_value: number;
+    loot: [];
 }

@@ -1,16 +1,23 @@
 footer {
-    position: relative;
-    bottom: 0;
     background-color: #D9D9D9;
     width: 100%;
+    min-height:7.5vh;
 }
 
 .menu{
     display: flex;
     text-align: center;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: 3vh;
 }
+
+// a{
+//     color: black;
+//     opacity: 50%;
+//     font-size: larger;
+//     text-decoration: none;
+//     margin-right: 20%;
+// }
 
 a{
     color: black;
@@ -18,9 +25,30 @@ a{
     font-size: larger;
     text-decoration: none;
     margin-right: 20%;
+    justify-content: center;
+    position: relative;
+    overflow:hidden;
+    border: none;
+    background: none;
 }
 
-a:hover{
+a:before{
+    content:'▷';
+    font-size:10px;
+    color:black;
+    position:absolute;
+    left:-2.5em;
+    opacity:0;
+    padding-top: 0.5vh;
+    transition:all .5s ease-in-out;
+}
+
+a:hover:before{
+    left:-1.5em;
+    opacity:1;
+}
+
+a:hover {
     color: black;
     opacity: 100%;
-}
+}   

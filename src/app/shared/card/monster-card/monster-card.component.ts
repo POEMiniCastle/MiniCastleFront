@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/core/entities/card';
+import { Monster } from 'src/app/core/entities/monster';
 
 @Component({
   selector: 'app-monster-card',
@@ -22,6 +23,7 @@ import { Card } from 'src/app/core/entities/card';
 
 export class MonsterCardComponent {
   @Input() card?: Card;
+  @Input() monsterCard?:Monster;
 
   hp:number = 18;
   dmg:number = 50;

@@ -12,7 +12,7 @@ export class CardService {
 
   urlCard:string = "http://10.125.52.59:8080/api/card";
 
-  urlMonster:string = "http://10.125.52.59:8080/api/card"
+  urlMonster:string = "http://10.125.52.59:8080/api/monstercard"
   
   constructor(private httpClient: HttpClient) {}
 
@@ -23,7 +23,7 @@ export class CardService {
       ) 
   }
 
-  getContentType(): Observable<Monster[]> {
+  getMonsterType(): Observable<Monster[]> {
     return this.httpClient.get<Monster[]>(this.urlMonster)
     .pipe (
       map((res : Monster[]) => (res))

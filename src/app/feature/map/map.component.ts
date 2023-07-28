@@ -11,6 +11,7 @@ import { CardService } from 'src/app/services/card/card.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
+
 export class MapComponent {
   
   cardTable!: Card[];
