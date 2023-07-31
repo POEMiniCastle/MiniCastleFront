@@ -12,7 +12,7 @@ export class CardService {
 
   urlCard:string = "http://localhost:8080/api/random";
 
-  urlMonster:string = "http://10.125.52.59:8080/api/monstercard"
+  urlMonster:string = "http://localhost:8080/api/monstercard"
   
   constructor(private httpClient: HttpClient) {}
 
@@ -28,10 +28,10 @@ export class CardService {
     }
   }
 
-  getMonsterType(id:number): Observable<Monster[]> {
-    return this.httpClient.get<Monster[]>(this.urlMonster)
+  getMonsterType(id:number): Observable<Monster> {
+    return this.httpClient.get<Monster>(this.urlMonster)
     .pipe (
-      map((res : Monster[]) => (res))
+      map((res : Monster) => (res))
     ) 
   }
 
