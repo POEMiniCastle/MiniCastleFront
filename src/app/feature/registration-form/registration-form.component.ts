@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { RegistrationPlayer } from 'src/app/core/entities/RegistrationPlayer';
+import { ConnexionPlayer } from 'src/app/core/entities/ConnexionPlayer';
 import { Player } from 'src/app/core/entities/Player';
 import { PlayerService } from 'src/app/services/player/player.service';
 
@@ -44,16 +46,18 @@ export class RegistrationFormComponent {
   }
   
   submitRegistration() {
-    this.player = new Player(this.form.value.email, this.form.value.username, this.form.value.password);
-    
-    this.playerService.register(this.player)
+    this.playerService.register(new RegistrationPlayer(this.form.value.email, this.form.value.username, this.form.value.password))
     .subscribe({
+      next: (response: Player) => this.player = response,
       error: (err) => console.error(err)
     });
   }
 
   submitConnection() {
-    //TODO implement this function
-    //Check if the user exists in the database, if yes redirect to the game, if not show an error
+    this.playerService.connexion(new ConnexionPlayer(this.form.value.username, this.form.value.password))
+    .subscribe({
+      next: (response: Player) => this.player = response,
+      error: (err) => console.error(err)
+    });
   }
 }
