@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Player } from 'src/app/core/entities/Player';
+import { PlayerService } from 'src/app/services/player/player.service';
+
 
 @Component({
   selector: 'app-registration-form',
@@ -9,8 +13,9 @@ import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@
 export class RegistrationFormComponent {
   token: string = 'register';
   form: UntypedFormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
+  player!: Player;
+  
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private playerService: PlayerService) {
     this.form = formBuilder.group({
       username: new UntypedFormControl('', Validators.required),
       email: new UntypedFormControl('', [Validators.required, Validators.email]),
@@ -32,15 +37,19 @@ export class RegistrationFormComponent {
             matchingControl.setErrors(null);
         }
     }
-}
+  }
   
   get f() {
     return this.form.controls;
   }
-
+  
   submitRegistration() {
-    //TODO implement this function
-    //Post a new user in the database (check if the user already exists?)
+    this.player = new Player(this.form.value.email, this.form.value.username, this.form.value.password);
+    
+    this.playerService.register(this.player)
+    .subscribe({
+      error: (err) => console.error(err)
+    });
   }
 
   submitConnection() {
