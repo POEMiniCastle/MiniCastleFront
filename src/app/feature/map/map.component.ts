@@ -15,18 +15,11 @@ import { CardService } from 'src/app/services/card/card.service';
 export class MapComponent {
   
   cardTable!: Card[];
-  monsterTable! : Monster[];
-  temp!:Monster;
 
   constructor(private cardService: CardService){ }
 
   ngOnInit() {
     this.getCards();
-    this.getCards().forEach(element => {
-      this.temp = this.cardService.getMonsterType(element.id);
-      this.monsterTable.push(this.temp);
-      
-    });
   }
 
   getCards():any{

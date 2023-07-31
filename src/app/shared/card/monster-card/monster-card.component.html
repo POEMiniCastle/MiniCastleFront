@@ -1,8 +1,8 @@
  <div class="hide">
         <div class="hp-damage" role="group">
-            <span id="hp">{{ hp }}</span>
+            <span id="hp">{{ monsterCard?.hp }}</span>
 
-            <span id="damage">{{ dmg }}</span>
+            <span id="damage">{{ monsterCard?.damage }}</span>
         </div>
 
         <div [ngClass]="(flip == 'active') ? 'img-monster' : ''">

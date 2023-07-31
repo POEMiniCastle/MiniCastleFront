@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-4 offset-lg-4">
       <div class="row text-center">
-        <ngb-carousel [interval]="1000000" class="border rounded bg-secondary">
+        <ngb-carousel [interval]="1000000" class="border rounded bg-secondary principal">
           <ng-template ngbSlide *ngFor="let class of classes$ | async">
             <h2>{{ class.name }}</h2>
             <img
@@ -10,7 +10,7 @@
               style="width: 200px; padding-bottom: 220px"
               alt="Random image"
             />
-            <div class="carousel-caption" style="color: black">
+            <div class="carousel-caption stats" style="color: black">
               <p>Health points : {{ class.base_hp }}</p>
               <p>Armor : {{ class.base_armor }}</p>
               <p>Damage : {{ class.base_damage }}</p>

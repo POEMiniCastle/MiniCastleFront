@@ -8,7 +8,7 @@ import { Class } from 'src/app/core/entities/class';
 })
 
   export class ClassService {
-    url: string = "http://10.125.52.59:8080/api/class";
+    url: string = "http://localhost:8080/api/class";
 
     constructor(private httpClient: HttpClient) { }
     getClass(): Observable<Class[]> {

@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/core/entities/card';
 import { Monster } from 'src/app/core/entities/monster';
+import { CardService } from 'src/app/services/card/card.service';
 
 @Component({
   selector: 'app-monster-card',
@@ -23,14 +24,21 @@ import { Monster } from 'src/app/core/entities/monster';
 
 export class MonsterCardComponent {
   @Input() card?: Card;
-  @Input() monsterCard?:Monster;
-
-  hp:number = 18;
-  dmg:number = 50;
+  monsterCard?:Monster;
+  flip: string = 'active'; 
+  constructor(private cardService: CardService){ }
 
   toggleFlip() {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
   }
+ 
+  ngOnInit(){
+    if(this.card){
+      this.getMonsterInfo(this.card.id)
+    }
+  }
 
-  flip: string = 'active';
+  getMonsterInfo(id:number){
+    this.cardService.getMonsterType(id).subscribe(monster => this.monsterCard = monster);
+  }
 }

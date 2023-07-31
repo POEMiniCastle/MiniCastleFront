@@ -6,6 +6,7 @@ import { MonsterCardComponent } from './monster-card/monster-card.component';
 import { TreasureCardComponent } from './treasure-card/treasure-card.component';
 import { TrapCardComponent } from './trap-card/trap-card.component';
 import { Monster } from 'src/app/core/entities/monster';
+import { CardService } from 'src/app/services/card/card.service';
 
 @Component({
   selector: 'app-card',
@@ -27,10 +28,13 @@ import { Monster } from 'src/app/core/entities/monster';
 
 export class CardComponent {
   @ViewChild(AdDirective, {static: true}) adHost!: AdDirective;
+
   @Input() card!: Card;
   @Input() monsterCard! : Monster;
-  stringifiedData : any;
 
+  flip: string = 'active';
+
+  
 
   ngOnInit():void{
       this.loadComponent();    
@@ -46,7 +50,6 @@ export class CardComponent {
   getContentType():Type<any>{
     switch (this.card?.card_type) {
       case "Monster":
-        this.card.id
         return MonsterCardComponent;
       break;
     case "Treasure":
@@ -59,38 +62,11 @@ export class CardComponent {
       return TrapCardComponent;
     }  
   }
-
+  
   toggleFlip() {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
   }
 
-  flip: string = 'active';
-  // cards$: Observable<Card[]> | any;
-  // cardMonster: Card[] = [];
-  // card: Card = {
-  //   id: 0,
-  //   card_image_path: '',
-  //   card_name: '',
-  //   card_type: '',
-  //   description: '',
-  //   score_value: 0
-  // };
 
-  // hp:number = 18;
-  // dmg:number = 50;
-  // constructor(private cardService: CardService){ }
-
-  // ngOnInit(): void {
-  //   this.cardService.getCard()
-  //   .pipe(
-  //     concatMap(cardMonster => cardMonster),
-  //     filter(card => card.card_type == "Monster")
-  //     )
-  //     .subscribe((res) => {
-  //       console.log(res);
-  //     })
-  // }
-
- 
-
+  
 }
