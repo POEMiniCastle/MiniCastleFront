@@ -18,11 +18,11 @@ export class MapComponent {
 
   constructor(private cardService: CardService){ }
 
-  ngOnInit():void {
+  ngOnInit() {
     this.getCards();
   }
 
-  getCards(){
+  getCards():any{
     this.cardService.getCard()
       .subscribe(cards => this.cardTable = cards)
   } 

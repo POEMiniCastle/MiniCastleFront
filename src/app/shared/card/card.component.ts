@@ -29,9 +29,11 @@ export class CardComponent {
   @ViewChild(AdDirective, {static: true}) adHost!: AdDirective;
   @Input() card!: Card;
   @Input() monsterCard! : Monster;
+  stringifiedData : any;
+
 
   ngOnInit():void{
-    this.loadComponent();
+      this.loadComponent();    
   }
   
   loadComponent(){
@@ -44,6 +46,7 @@ export class CardComponent {
   getContentType():Type<any>{
     switch (this.card?.card_type) {
       case "Monster":
+        this.card.id
         return MonsterCardComponent;
       break;
     case "Treasure":

@@ -15,8 +15,9 @@ export const navbarData = [
         routeLink: 'connexion',
         icon: 'login',
         label:'LogIn'
-
     },
 
 
 ]
+
+
