@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 offset-lg-2 col-xl-6 offset-xl-2">
       <div class="row text-center">
         
         <ngb-carousel [keyboard]="true" [interval]="1000000" class="border rounded principal">
           <ng-template ngbSlide *ngFor="let class of classesTable">
             <h2>{{ class.name }}</h2>
             <img src="assets/{{class.imagePath}}"
-            style="width: 60%; padding-bottom: 10%"
+            
             alt="Random image"/>
             
 
@@ -18,13 +18,12 @@
               
               <button
                 type="button"
-                style="margin-bottom: 10%"
-                class="btn btn-dark"
+                class="btn btn-primary btn-sm skill_description"
                 placement="top"
                 ngbPopover="{{ class.skill_description }}"
                 triggers="mouseenter:mouseleave"
                 popoverTitle="{{ class.skill_name }}"
-              ><p>{{ class.skill_name  }}</p>
+                  ><p>{{ class.skill_name  }}</p>
                 
               </button><br>
               <button style="margin-bottom: 10%" class="btn btn-danger" id="sClass" (click)='getClass(class.id)'>Select this Class</button>

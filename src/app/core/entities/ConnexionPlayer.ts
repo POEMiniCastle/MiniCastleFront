@@ -6,4 +6,5 @@ export class ConnexionPlayer {
         this.username = username;
         this.passwd = passwd;
     }
+
 }
