@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, Type, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Type, ViewChild } from '@angular/core';
 import { AdDirective } from 'src/app/ad.directive';
 import { Card } from 'src/app/core/entities/card';
 import { MonsterCardComponent } from './monster-card/monster-card.component';
@@ -31,15 +31,16 @@ export class CardComponent {
 
   @Input() card!: Card;
   @Input() monsterCard! : Monster;
+  @Input() deActivate : boolean | undefined;
 
+  @Output() flipped = new EventEmitter<boolean>();
+  
   flip: string = 'active';
-
   
-
   ngOnInit():void{
-      this.loadComponent();    
+      this.loadComponent();   
   }
-  
+
   loadComponent(){
     const viewContainerRef = this.adHost.viewContainerRef;
     viewContainerRef.clear();
@@ -64,9 +65,17 @@ export class CardComponent {
   }
   
   toggleFlip() {
-    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
+    if(this.deActivate){
+      return;
+    } else {
+      this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
+      this.flipped.emit(true);
+      this.desactivateFlip();
+    }
   }
 
-
+  desactivateFlip(){
+    this.deActivate = true;
+  }
   
 }
