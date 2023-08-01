@@ -20,11 +20,6 @@ export class MapComponent {
 
   ngOnInit():void {
     this.getCards();
-<<<<<<< Updated upstream
-=======
-      
-  
->>>>>>> Stashed changes
   }
 
   getCards(){
