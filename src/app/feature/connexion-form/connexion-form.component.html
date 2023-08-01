@@ -1,0 +1,35 @@
+<main class="container">
+    <div class='row '>
+        <div id="Connection" class="col col-4 offset-4">
+            <div class="center-form">
+                <h1>Connection.</h1>
+                <form [formGroup]="form" (ngSubmit)="submitConnection()">
+                    <div class="input_field">
+                        <input type="text" formControlName="username" id="username" placeholder="Username">
+            
+                        <span *ngIf="f['username'].invalid && (f['username'].dirty || f['username'].touched)">
+                            <br>
+                            <span class="error_msg" *ngIf="f['username'].errors?.['required']">Username required</span>
+                        </span>
+                    </div>
+                    <div class="input_field">
+                        <input type="password" formControlName="password" id="password" placeholder="Password">
+                    
+                        <span *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">
+                            <br>
+                            <span class="error_msg" *ngIf="f['password'].errors?.['required']">Password required</span>
+                        </span>
+                    </div>
+                    <button type="submit" class="btn btn-light btn-lg" [disabled]="!form.valid">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="col col-4 offset-4" id="svg">
+            <div id="triangle">
+                <img src="..\..\..\assets\inscription.svg" alt="">
+            </div>
+        </div>
+    </div>
+</main>

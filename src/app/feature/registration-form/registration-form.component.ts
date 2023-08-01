@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RegistrationPlayer } from 'src/app/core/entities/RegistrationPlayer';
-import { ConnexionPlayer } from 'src/app/core/entities/ConnexionPlayer';
 import { Player } from 'src/app/core/entities/Player';
 import { PlayerService } from 'src/app/services/player/player.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,11 +13,9 @@ import { PlayerService } from 'src/app/services/player/player.service';
   styleUrls: ['./registration-form.component.scss']
 })
 export class RegistrationFormComponent {
-  token: string = 'register';
   form: UntypedFormGroup;
-  player!: Player;
   
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private playerService: PlayerService) {
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private playerService: PlayerService, private router:Router) {
     this.form = formBuilder.group({
       username: new UntypedFormControl('', Validators.required),
       email: new UntypedFormControl('', [Validators.required, Validators.email]),
@@ -48,15 +46,10 @@ export class RegistrationFormComponent {
   submitRegistration() {
     this.playerService.register(new RegistrationPlayer(this.form.value.email, this.form.value.username, this.form.value.password))
     .subscribe({
-      next: (response: Player) => this.player = response,
-      error: (err) => console.error(err)
-    });
-  }
-
-  submitConnection() {
-    this.playerService.connexion(new ConnexionPlayer(this.form.value.username, this.form.value.password))
-    .subscribe({
-      next: (response: Player) => this.player = response,
+      next: (response: Player) => {
+        sessionStorage.setItem("player", JSON.stringify(response));
+        this.router.navigate(['/play-menu']);
+      },
       error: (err) => console.error(err)
     });
   }

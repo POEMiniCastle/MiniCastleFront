@@ -37,6 +37,8 @@ import { AdDirective } from './ad.directive';
 import { TreasureCardComponent } from './shared/card/treasure-card/treasure-card.component';
 import { TrapCardComponent } from './shared/card/trap-card/trap-card.component';
 import { CombatPageComponent } from './feature/combat-page/combat-page.component';
+import { ConnexionFormComponent } from './feature/connexion-form/connexion-form.component';
+import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { CombatPageComponent } from './feature/combat-page/combat-page.component
     AdDirective,
     TreasureCardComponent,
     TrapCardComponent,
-    CombatPageComponent
+    CombatPageComponent,
+    ConnexionFormComponent,
+    PlayMenuComponent
   ],
   imports: [
     BrowserModule,

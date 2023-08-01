@@ -2,14 +2,14 @@
 // Using for the SVG & font responsivity 
 @media (width > 1600px) {
     #triangle {
-        width: 102.8%;
+        width: 101.8%;
     }
     a{font-size: 28px;}
   }
 
   @media (width > 1400px) {
     #triangle {
-        width: 103%;
+        width: 102.8%;
     }
     a{font-size: 28px;}
   }
@@ -37,53 +37,19 @@
   }
 // #endregion
 
-ul{
-    list-style-type: none;
-    text-align: center;
-    justify-content: center;
-    margin-bottom: 5%;
-
-}
-
-li{
-    padding-bottom: 1%;
-    margin-right: 10%;
-    text-align: center;
-}
-
-a{
-    font-family: 'Roboto', sans-serif;
-    text-decoration: none;
-    color : #525151;
-    font-weight: bolder;
-}
-
+// #region Template Background Flag
 #Connection{
     padding-top: 2%;
     background-color: #E7E7E7;
     justify-content: center;
-    height: 50%;
+    height: 60vh;
     border-radius: 25px 25px 0px 0px;
     margin-top: 5%;
     padding-top: 5%;
 }
 
-hr{
-    border: 1px solid #525151; 
-    width: 30%;
-    margin-left: 35%;
-}
-
-#logo{
-    margin-left: 5%;
-    width: 70%;
-    padding-bottom: 15%;
-}
-
 #triangle {
-    margin-top: -16%;
-    position: relative;
-    z-index: -1;
+    margin-top: -15%;
     padding-left: 0 !important;
 }
 
@@ -91,11 +57,52 @@ hr{
     padding-left: 0 !important;
 }
 
-#brick{
-    width:30%;
-    transform: translateX(480px);
+// #endregion
 
+form{
+    padding-top: 10%;
+    text-align: center;
+    justify-content: center;
 }
 
+#container {
+    background-color: var(--main-bg-color);
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+}
 
+h1{
+    margin-left: 10%;
+}
 
+input {
+    background-color: var(--main-bg-color);
+    border: none;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    width: 80%;
+    padding-bottom: 5% ;
+}
+
+.input_field {
+    margin-bottom: 20px;
+}
+
+.error_msg {
+    color: red;
+}
+
+button {
+    background-color: white;
+    border-radius: 20px;
+    position: absolute;
+    display: block;
+    margin-left: 2%;
+    font-size: small;
+}
+
+button:hover {
+    background-color: #555555;
+    color: white;
+}
