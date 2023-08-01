@@ -1,32 +1,38 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-4 offset-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
       <div class="row text-center">
-        <ngb-carousel [interval]="1000000" class="border rounded bg-secondary">
-          <ng-template ngbSlide *ngFor="let class of classes$ | async">
+        
+        <ngb-carousel [keyboard]="true" [interval]="1000000" class="border rounded principal">
+          <ng-template ngbSlide *ngFor="let class of classesTable">
             <h2>{{ class.name }}</h2>
-            <img
-            src="assets/{{class.imagePath}}"
-              style="width: 200px; padding-bottom: 220px"
-              alt="Random image"
-            />
-            <div class="carousel-caption" style="color: black">
+            <img src="assets/{{class.imagePath}}"
+            style="width: 60%; padding-bottom: 10%"
+            alt="Random image"/>
+            
+
+            <div class="stats" style="color: black">
               <p>Health points : {{ class.base_hp }}</p>
               <p>Armor : {{ class.base_armor }}</p>
               <p>Damage : {{ class.base_damage }}</p>
+              
               <button
                 type="button"
+                style="margin-bottom: 10%"
                 class="btn btn-dark"
                 placement="top"
                 ngbPopover="{{ class.skill_description }}"
                 triggers="mouseenter:mouseleave"
                 popoverTitle="{{ class.skill_name }}"
-              >
-                {{ class.skill_name  }}
-              </button>
+              ><p>{{ class.skill_name  }}</p>
+                
+              </button><br>
+              <button style="margin-bottom: 10%" class="btn btn-danger" id="sClass" (click)='getClass(class.id)'>Select this Class</button>
             </div>
-          </ng-template>
+
+        </ng-template>
         </ngb-carousel>
+      
       </div>
     </div>
   </div>

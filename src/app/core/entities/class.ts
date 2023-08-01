@@ -5,6 +5,6 @@ export interface Class {
     base_damage: number
     skill_name: string
     skill_description: string
-    id: string
+    id: number
     imagePath: string
 }
