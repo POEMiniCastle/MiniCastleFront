@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Character } from 'src/app/core/entities/Character';
+import { Player } from 'src/app/core/entities/Player';
 import { Class } from 'src/app/core/entities/class';
 import { ClassService } from 'src/app/services/class/class.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-class-carousel',
@@ -12,8 +16,9 @@ import { ClassService } from 'src/app/services/class/class.service';
 export class ClassCarouselComponent {
   classes$: Observable<Class[]> | undefined;
   classesTable!: Class[];
+  player!:Player;
 
-  constructor(private classService: ClassService){
+  constructor(private classService: ClassService, private router:Router){
   }
 
   trackByClasseId(classe: Class): number {
@@ -41,7 +46,16 @@ export class ClassCarouselComponent {
   }
 
   getClass(id:number){
-    console.log(this.classesTable[id-1])
+    //console.log(this.classesTable[id-1]);
+
+    // On ajoute les stats de base de la classe choisi par le joueur dans le stockage de session
+    this.player = JSON.parse(sessionStorage.getItem("player") as string);
+    this.player.character = this.classesTable[id-1];
+    sessionStorage.setItem("player", JSON.stringify(this.player));
+    console.log("apres"+ sessionStorage.getItem("player"));
+
+    // Redirection vers la map
+    this.router.navigate(['/play'])
   }
 }
 

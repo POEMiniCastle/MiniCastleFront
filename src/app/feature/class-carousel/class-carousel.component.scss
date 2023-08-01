@@ -72,13 +72,17 @@ ngb-carousel {
   flex-direction: column;
   align-items: center;
 }
+img{
+  width: 20vw; 
+  padding-bottom: 5%
+}
 
 h2 {
-    font-size: calc(2rem + 1.30vw);
+    font-size: calc(1.8rem + 1.30vw);
     padding-top: 2%;
 }
 p{
-    font-size: calc(1rem + 1.30vw);
+    font-size: calc(0.3rem + 1.30vw);
 }
 .popoverTitle {
     font-size: calc(1rem + 1.30vw);
@@ -88,4 +92,17 @@ p{
 .popover-content {
     font-size: calc(1rem + 1.30vw);
     text-align:center;
+}
+
+.container{
+  padding-top: 1%;
+}
+
+.skill_description{
+  margin-bottom: 5%
+}
+button{
+  p{
+    font-size: calc(0.5rem + 0.5vw);
+  }
 }
