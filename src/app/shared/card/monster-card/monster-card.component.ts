@@ -25,20 +25,24 @@ import { CardService } from 'src/app/services/card/card.service';
 export class MonsterCardComponent {
   @Input() card?: Card;
   monsterCard?:Monster;
+
   flip: string = 'active'; 
+  
   constructor(private cardService: CardService){ }
 
-  toggleFlip() {
-    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
-  }
- 
   ngOnInit(){
     if(this.card){
       this.getMonsterInfo(this.card.id)
+      
     }
   }
 
   getMonsterInfo(id:number){
-    this.cardService.getMonsterType(id).subscribe(monster => this.monsterCard = monster);
+    this.cardService.getMonsterType(id)
+    .subscribe(monster => {
+      this.monsterCard = monster;
+      sessionStorage.setItem("monster", JSON.stringify(this.monsterCard));
+    })
+    ;
   }
 }

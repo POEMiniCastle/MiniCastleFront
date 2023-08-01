@@ -50,19 +50,6 @@ body {
     }
 }
 
-.hide {
-    width: auto;
-}
-
-.material-symbols-outlined {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: center;
-    width: auto;
-    margin-top: -5%;
-}
-
 #imageMonster {
     width: 50%;
     margin-left: 20%;
@@ -95,7 +82,7 @@ body {
     #hp {
         background-color: #931621;
         border-radius: 20px 0px 25px 0px;
-        padding: 15px 25px 15px 20px;
+        padding: 15px 20px 15px 20px;
     }
 
     #damage {
@@ -106,20 +93,14 @@ body {
     }
 }
 
-.trap-damage {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    color: white;
-    font-weight: bolder;
-    font-size: auto;
 
-    #damage {
-        background-color: #e3c724;
-        justify-content: flex-end;
-        border-radius: 0px 20px 0px 25px;
-        padding: 15px 20px 15px 20px;
-    }
+.material-symbols-outlined{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    bottom : 0;
+    width: auto;
+    margin-top: auto;
 }
 
 // #endregion

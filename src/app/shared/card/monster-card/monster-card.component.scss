@@ -1,0 +1,50 @@
+.description{
+    margin-left: 8%;
+    width: 80%;
+}
+
+#hp-damage{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    font-weight: bolder;
+    font-size: auto;
+
+    #hp{
+        background-color: #931621;
+        border-radius: 20px 0px 25px 0px;
+        padding: 15px 25px 15px 20px;
+    }
+
+    #damage{
+        justify-content: end;
+        background-color: #931621;
+        border-radius: 0px 20px 0px 25px;
+        padding: 15px 20px 15px 20px;
+    }
+  }  
+
+img{
+    width: 50%;
+    margin-left: 20%;
+    margin-right: 10px;
+}
+
+h5{
+    margin-left: 2%;
+    font-size: auto;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+#cardDescription{
+    font-size: 70%;
+    font-weight: bold;
+}
+
+
+.hide{
+    width: auto;
+    height: 100%;
+}

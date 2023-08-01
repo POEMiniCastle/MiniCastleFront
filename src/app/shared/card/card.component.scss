@@ -17,13 +17,13 @@
 @media (width < 1400px) {
     .template-card {
         border-radius: 30px 30px 30px 30px  !important;
-        width: 15vw;
+        width: 12vw;
     }
   }
 @media (width < 1000px) {
     .template-card {
         border-radius: 30px 30px 30px 30px  !important;
-        width: 20vw;
+        width: 15vw;
         //ici
     }
   }
@@ -44,78 +44,30 @@
 .template-card {
     border-radius: 30px 30px 30px 30px  !important;
     min-width: 5vw;
-    min-height: 4vh !important;
+    min-height: 30vh !important;
+    max-height: 30vh !important;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     // min-width: 20vw !important;
   }
 
-
-#description{
-    margin-left: 2%;
-}
-
-#hp-damage{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: white;
-    font-weight: bolder;
-    font-size: auto;
-
-    #hp{
-        background-color: #931621;
-        border-radius: 20px 0px 25px 0px;
-        padding: 15px 25px 15px 20px;
-    }
-
-    #damage{
-        justify-content: end;
-        background-color: #931621;
-        border-radius: 0px 20px 0px 25px;
-        padding: 15px 20px 15px 20px;
-    }
-  }  
-
-img{
-    width: 50%;
-    margin-left: 20%;
-    margin-right: 10px;
-}
-
-h5{
-    margin-left: 2%;
-    font-size: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-p{
-    width: auto;
-}
-
-.material-symbols-outlined{
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: center;
-    width: auto;
-    margin-top: -5%;
-}
-
 .card_back {
     transition-delay: 0.3s;
-    background: #000214;
+    outline: 3px solid white;
+    outline-offset: -20px;
+    background-image:url("/assets/Mini_castle_blanc.webp");
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
     border: 5px solid #000214;
+   
     .hide {
         transition-delay: 0.3s;
         visibility: hidden;
     }
-    
-
 }
 
 .card_front {
-    transition-delay: 0.20s;
+    transition-delay: 0.1s;
     background: white;
     .hide{
         transition-delay: 0.20s;
@@ -126,3 +78,7 @@ p{
     width: auto;
 }
 
+ng-template{
+    width: auto;
+    height: auto;
+}

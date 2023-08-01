@@ -30,7 +30,6 @@ export class CardComponent {
   @ViewChild(AdDirective, {static: true}) adHost!: AdDirective;
 
   @Input() card!: Card;
-  @Input() monsterCard! : Monster;
   @Input() deActivate : boolean | undefined;
 
   @Output() flipped = new EventEmitter<boolean>();
