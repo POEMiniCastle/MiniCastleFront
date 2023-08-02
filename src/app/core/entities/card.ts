@@ -1,5 +1,6 @@
 export interface Card {
     id: number;
+    localID: number;
     card_image_path: string;
     card_name: string;
     card_type: string;

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Card } from 'src/app/core/entities/card';
+import { Monster } from 'src/app/core/entities/monster';
+import { CardService } from 'src/app/services/card/card.service';
 
 @Component({
   selector: 'app-combat-page',
@@ -9,7 +11,9 @@ import { Card } from 'src/app/core/entities/card';
 export class CombatPageComponent {
   cardHolder!:Card;
   flip: string = 'active';
+  monster?:Monster;
 
+  constructor(private CardService : CardService){}
   ngOnInit(){
     this.getInfoCard();
   }

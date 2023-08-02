@@ -25,7 +25,6 @@ export class CardService {
     }else {
     return this.httpClient.get<Card[]>(this.urlCard)
       .pipe (
-        tap((res : Card[]) => (res)),
         tap((res : Card[])=> sessionStorage.setItem("cards", JSON.stringify(res)))
       ) 
     }

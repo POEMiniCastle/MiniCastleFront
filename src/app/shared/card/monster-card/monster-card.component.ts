@@ -32,17 +32,16 @@ export class MonsterCardComponent {
 
   ngOnInit(){
     if(this.card){
-      this.getMonsterInfo(this.card.id)
-      
+      this.getMonsterInfo(this.card.id);
     }
   }
 
   getMonsterInfo(id:number){
     this.cardService.getMonsterType(id)
-    .subscribe(monster => {
-      sessionStorage.setItem("monster", JSON.stringify(monster));
-      this.monsterCard = (JSON.parse(sessionStorage.getItem("monster") as string));
-    })
-    ;
+    .subscribe({
+      next:monster  => 
+      this.monsterCard = monster});
+    
+  
   }
 }

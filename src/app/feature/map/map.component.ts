@@ -14,25 +14,31 @@ import { CardService } from 'src/app/services/card/card.service';
 
 export class MapComponent {
   
-  cardTable!: Card[];
+  cardTable: Card[] = [];
   isActiveMap:Map<number, boolean> = new Map();
+  PositionMap:Map<number, number> = new Map();
   overBlurVar!:string;
   visibilityVar!:string;
+  cardTemp!: Card;
 
   constructor(private cardService: CardService){ }
 
   ngOnInit() {
     this.getCards();
+    this.createPosition();
+    if(sessionStorage.getItem("event") != null){
+      this.checkPosition();
+    }
   }
 
   getCards():any{
     this.cardService.getCard()
       .subscribe(cards => {
-        this.cardTable = cards;
-        for(let i=0; i<= this.cardTable.length; i++){
-          this.isActiveMap.set(i, true);
-        }
-        this.isActiveMap.set(0, false);
+          this.cardTable = cards;
+          for(let i=0; i<= this.cardTable.length; i++){
+            this.isActiveMap.set(i, true);
+          }
+          this.isActiveMap.set(0, false);
       })
   } 
 
@@ -40,14 +46,12 @@ export class MapComponent {
     this.isActiveMap.set(index, event)
     sessionStorage.setItem("event", JSON.stringify(this.cardTable[index]));
     this.changeStateAfterChoose(index);
-
   }
 
   changeStateAfterChoose(index:number){
     for(let i = 0; i<= this.cardTable.length; i++){
       this.isActiveMap.set(i, true);
     }
-
     if(index == 2 || index === 5){
       this.isActiveMap.set(index+3, false); 
     } else {
@@ -61,5 +65,22 @@ export class MapComponent {
     this.visibilityVar = 'visible';
   }
 
+  createPosition(){
+    for(let i=0; i < this.cardTable.length; i++){
+      this.PositionMap.set(i, this.cardTable[i].localID);
+    }
+  }
+
+  checkPosition(){
+    if(sessionStorage.getItem("event") != null){
+      this.cardTemp = JSON.parse(sessionStorage.getItem("event") as string);
+        for(let i =0; i <= this.PositionMap.size; i++){
+          if(this.PositionMap.get(i) == this.cardTemp.localID) 
+            this.changeState(false, i);
+          }
+    } else {
+      return;
+  }
+  }
 }
 
