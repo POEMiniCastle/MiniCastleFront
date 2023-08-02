@@ -13,7 +13,7 @@ export class CombatPageComponent {
   ngOnInit(){
     this.getInfoCard();
   }
-
+  
   getInfoCard(){
     this.cardHolder = JSON.parse(sessionStorage.getItem("event")as string)
   }

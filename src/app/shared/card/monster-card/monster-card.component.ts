@@ -40,8 +40,8 @@ export class MonsterCardComponent {
   getMonsterInfo(id:number){
     this.cardService.getMonsterType(id)
     .subscribe(monster => {
-      this.monsterCard = monster;
-      sessionStorage.setItem("monster", JSON.stringify(this.monsterCard));
+      sessionStorage.setItem("monster", JSON.stringify(monster));
+      this.monsterCard = (JSON.parse(sessionStorage.getItem("monster") as string));
     })
     ;
   }
