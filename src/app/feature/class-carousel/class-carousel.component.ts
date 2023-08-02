@@ -49,10 +49,9 @@ export class ClassCarouselComponent {
     //console.log(this.classesTable[id-1]);
 
     // On ajoute les stats de base de la classe choisi par le joueur dans le stockage de session
-    this.player = JSON.parse(sessionStorage.getItem("player") as string);
+    this.player = JSON.parse(localStorage.getItem("player") as string);
     this.player.character = this.classesTable[id-1];
-    sessionStorage.setItem("player", JSON.stringify(this.player));
-    console.log("apres"+ sessionStorage.getItem("player"));
+    localStorage.setItem("player", JSON.stringify(this.player));
 
     // Redirection vers la map
     this.router.navigate(['/play'])

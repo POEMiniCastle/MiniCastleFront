@@ -29,7 +29,7 @@ export class ConnexionFormComponent {
     this.playerService.connexion(new ConnexionPlayer(this.form.value.username, this.form.value.password))
     .subscribe({
       next: (response: Player) => {
-        sessionStorage.setItem("player", JSON.stringify(response));
+        localStorage.setItem("player", JSON.stringify(response));
         this.router.navigate(['/play-menu']);
       },
       error: (err) => console.error(err)

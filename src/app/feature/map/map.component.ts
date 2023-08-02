@@ -42,11 +42,13 @@ export class MapComponent {
       })
   } 
 
-  changeState(event:boolean, index:number){
+  changeState(event:boolean, index:number, blur:number){
     this.isActiveMap.set(index, event)
     sessionStorage.setItem("event", JSON.stringify(this.cardTable[index]));
     this.changeStateAfterChoose(index);
-    this.getBlurry();
+    if(blur!=0){
+      this.getBlurry();
+    }
   }
 
   changeStateAfterChoose(index:number){
@@ -77,7 +79,7 @@ export class MapComponent {
       this.cardTemp = JSON.parse(sessionStorage.getItem("event") as string);
         for(let i =0; i <= this.PositionMap.size; i++){
           if(this.PositionMap.get(i) == this.cardTemp.localID) 
-            this.changeState(false, i);
+            this.changeState(false, i,0);
           }
     } else {
       return;

@@ -61,7 +61,7 @@ export class CombatPageComponent {
   }
 
   getPlayerStats() {
-    this.player = JSON.parse(sessionStorage.getItem('player') as string);
+    this.player = JSON.parse(localStorage.getItem('player') as string);
     this.playerDamage = this.player.character!.base_damage;
     this.playerHealth = this.player.character!.base_hp;
     this.playerArmor = this.player.character!.base_armor;
@@ -139,12 +139,10 @@ export class CombatPageComponent {
     this.overBlurVar = 'blur(50px)';
     if (matchResult == 'victory') {
       this.player.character!.base_hp = this.playerHealth;
-      sessionStorage.setItem('player', JSON.stringify(this.player));
+      localStorage.setItem('player', JSON.stringify(this.player));
       this.visibilityVictoryVar = 'visible';
     } else if (matchResult == 'defeat') {
-      sessionStorage.removeItem('cards');
-      sessionStorage.removeItem('event');
-      sessionStorage.removeItem('monster');
+      sessionStorage.clear();
       this.visibilityDefeatVar = 'visible';
     }
   }

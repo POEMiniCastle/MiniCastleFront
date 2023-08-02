@@ -39,7 +39,9 @@ export class CardComponent {
   
   ngOnInit():void{
       this.loadComponent();  
-      this.checkingTheMap();
+      if(this.card){
+        this.checkingTheMap();
+      }
   }
 
   loadComponent(){
