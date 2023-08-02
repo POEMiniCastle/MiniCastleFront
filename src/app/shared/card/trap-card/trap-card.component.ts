@@ -36,9 +36,8 @@ export class TrapCardComponent {
 
   getTrapInfo(id:number){
     this.cardService.getTrapType(id)
-    .subscribe(trap => {
-      sessionStorage.setItem("trap", JSON.stringify(trap));
-      this.trapCard = (JSON.parse(sessionStorage.getItem("trap") as string));
+    .subscribe({
+      next: trap => this.trapCard = trap
     });
   }
 }

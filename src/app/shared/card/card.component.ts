@@ -35,9 +35,11 @@ export class CardComponent {
   @Output() flipped = new EventEmitter<boolean>();
   
   flip: string = 'active';
+  temp!:string;
   
   ngOnInit():void{
-      this.loadComponent();   
+      this.loadComponent();  
+      this.checkingTheMap();
   }
 
   loadComponent(){
@@ -67,7 +69,7 @@ export class CardComponent {
     if(this.deActivate){
       return;
     } else {
-      this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
+      this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
       this.flipped.emit(true);
       this.desactivateFlip();
     }
@@ -75,6 +77,24 @@ export class CardComponent {
 
   desactivateFlip(){
     this.deActivate = true;
+    this.addToTheMap();
   }
   
+  addToTheMap(){
+    if(sessionStorage.getItem(this.card.card_name + this.card.localID) !== null){
+        this.flip = 'inactive';
+        this.deActivate = true;
+        sessionStorage.setItem(this.card.card_name + this.card.localID, (this.flip));
+    } else {
+      sessionStorage.setItem(this.card.card_name + this.card.localID, (this.flip));
+    }
+  }
+
+  checkingTheMap(){
+    if(sessionStorage.getItem(this.card.card_name + this.card.localID) !== null){
+      this.flip = 'inactive';
+      this.deActivate = true;
+      sessionStorage.setItem(this.card.card_name + this.card.localID, (this.flip));
+    }
+  }
 }
