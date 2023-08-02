@@ -40,7 +40,7 @@ export class MapComponent {
     this.isActiveMap.set(index, event)
     sessionStorage.setItem("event", JSON.stringify(this.cardTable[index]));
     this.changeStateAfterChoose(index);
-
+    this.getBlurry();
   }
 
   changeStateAfterChoose(index:number){

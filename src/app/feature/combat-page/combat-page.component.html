@@ -1,11 +1,14 @@
-<body>
+<body [style.--overBlur]="overBlurVar">
+    <a href="/play" [style.--isHidden]="visibilityVictoryVar">{{ result }}</a>
+    <a href="/play-menu" [style.--isHidden]="visibilityDefeatVar">{{ result }}</a>
+
     <div class="container">
         <app-card-holder [card]=cardHolder id="card"></app-card-holder>
     </div>
 
     <app-card id="test"></app-card>
     <footer>
-        <app-player-combat-interface></app-player-combat-interface>
+        <app-player-combat-interface (clicked)="determinePlayerMove($event)"></app-player-combat-interface>
     </footer>
 </body>
 

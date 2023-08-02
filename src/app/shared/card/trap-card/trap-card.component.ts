@@ -34,11 +34,11 @@ export class TrapCardComponent {
     }
   }
 
-  toggleFlip() {
-    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
-  }
-
   getTrapInfo(id:number){
-    this.cardService.getTrapType(id).subscribe(trap => this.trapCard = trap);
+    this.cardService.getTrapType(id)
+    .subscribe(trap => {
+      sessionStorage.setItem("trap", JSON.stringify(trap));
+      this.trapCard = (JSON.parse(sessionStorage.getItem("trap") as string));
+    });
   }
 }

@@ -4,7 +4,22 @@
     max-height: 93%;
     justify-content: center;
     margin: auto;
+    width: 100%;
+    justify-content: center;
+    filter: var(--overBlur);
 }
+
+a{
+    position: absolute;
+    z-index: 5;
+    text-decoration: none;
+    margin-top: 10%;
+    margin-left: 27%;
+    font-size: 200px;
+    color: red;
+    visibility: var(--isHidden, hidden);
+}
+
 
 #card{
     position: absolute;
@@ -26,6 +41,3 @@ footer{
 #test:hover{
     transform: translateY(0px); 
 }
-
-
-
