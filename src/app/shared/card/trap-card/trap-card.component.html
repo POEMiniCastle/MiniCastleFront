@@ -1,6 +1,6 @@
 <div class="hide">
     <div class="trap-damage" role="group">
-        <span id="damage">{{ dmg }}</span>
+        <span id="damage">{{ trapCard?.damage }}</span>
     </div>
 
     <div [ngClass]="(flip == 'active') ? 'img-monster' : ''">
@@ -12,6 +12,6 @@
         <p id="cardDescription">
             {{ card?.description }}
         </p>
-        <span class="material-symbols-outlined" style="color: #e3c724;">warning</span>
     </div>
+    <span class="material-symbols-outlined" style="color: #e3c724;">warning</span>
 </div>

@@ -1,35 +1,9 @@
-<div class="container">
-    <div class="row justify-content-evenly mb-1">   
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center" >
-           <app-card [card] = cardTable[1]></app-card>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center ">
-          <app-card [card] = cardTable[2]></app-card>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center ">
-          <app-card [card] = cardTable[3]></app-card>
-        </div>
+<div class="COMBAT">
+  <a href="/combat" [style.--isHidden]="visibilityVar">COMBAT</a>
+
+  <div class="container col-6 d-flex flex-row flex-wrap gap-2" [style.--overBlur]="overBlurVar">
+    <div *ngFor="let card of cardTable, let index = index" class="col-3">
+      <app-card [card]= cardTable[index] [deActivate]="isActiveMap.get(index)" (flipped)="changeState($event, index)" id=index></app-card>
     </div>
-    <div class="row justify-content-evenly mb-1">   
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center">
-          <app-card [card] = cardTable[4]></app-card>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center ">
-          <app-card [card] = cardTable[5]></app-card>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center ">
-          <app-card [card] = cardTable[6]></app-card>
-        </div>
-    </div>
-    <div class="row justify-content-evenly mb-1">   
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center">
-          <app-card [card] = cardTable[7]></app-card>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center ">
-          <app-card [card] = cardTable[8]></app-card>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-2 d-flex justify-content-center ">
-          <app-card [card] = cardTable[9]></app-card>
-        </div>
-    </div>
+  </div>  
 </div>

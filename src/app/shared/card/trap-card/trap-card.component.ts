@@ -1,6 +1,8 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/core/entities/card';
+import { Trap } from 'src/app/core/entities/trap';
+import { CardService } from 'src/app/services/card/card.service';
 
 @Component({
   selector: 'app-trap-card',
@@ -20,13 +22,23 @@ import { Card } from 'src/app/core/entities/card';
   ]
 })
 export class TrapCardComponent {
-@Input() card?: Card;
+  @Input() card?: Card;
+  trapCard?: Trap;
+  flip: string = 'active';
 
-dmg:number = 10;
+  constructor(private cardService: CardService){ }
 
-toggleFlip() {
-  this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
-}
+  ngOnInit(){
+    if(this.card){
+      this.getTrapInfo(this.card.id);
+    }
+  }
 
-flip: string = 'active';
+  toggleFlip() {
+    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
+  }
+
+  getTrapInfo(id:number){
+    this.cardService.getTrapType(id).subscribe(trap => this.trapCard = trap);
+  }
 }

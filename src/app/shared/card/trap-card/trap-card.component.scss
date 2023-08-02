@@ -1,3 +1,30 @@
-.template-card{
-    border: 5px solid #e3c724;
+.trap-damage {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    color: white;
+    font-weight: bolder;
+    font-size: auto;
+
+    #damage {
+        background-color: #e3c724;
+        justify-content: flex-end;
+        border-radius: 0px 20px 0px 25px;
+        padding: 15px 20px 15px 20px;
+    }
+}
+
+.hide{
+    width: auto;
+    height: 100%;
+}
+
+.description{
+    margin-left: 8%;
+    width: 80%;
+}
+
+#cardDescription{
+    font-size: 70%;
+    font-weight: bold;
 }

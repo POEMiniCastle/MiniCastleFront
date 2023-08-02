@@ -1,11 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, Type, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Type, ViewChild } from '@angular/core';
 import { AdDirective } from 'src/app/ad.directive';
 import { Card } from 'src/app/core/entities/card';
 import { MonsterCardComponent } from './monster-card/monster-card.component';
 import { TreasureCardComponent } from './treasure-card/treasure-card.component';
 import { TrapCardComponent } from './trap-card/trap-card.component';
 import { Monster } from 'src/app/core/entities/monster';
+import { CardService } from 'src/app/services/card/card.service';
 
 @Component({
   selector: 'app-card',
@@ -27,15 +28,18 @@ import { Monster } from 'src/app/core/entities/monster';
 
 export class CardComponent {
   @ViewChild(AdDirective, {static: true}) adHost!: AdDirective;
+
   @Input() card!: Card;
-  @Input() monsterCard! : Monster;
-  stringifiedData : any;
+  @Input() deActivate : boolean | undefined;
 
-
-  ngOnInit():void{
-      this.loadComponent();    
-  }
+  @Output() flipped = new EventEmitter<boolean>();
   
+  flip: string = 'active';
+  
+  ngOnInit():void{
+      this.loadComponent();   
+  }
+
   loadComponent(){
     const viewContainerRef = this.adHost.viewContainerRef;
     viewContainerRef.clear();
@@ -46,7 +50,6 @@ export class CardComponent {
   getContentType():Type<any>{
     switch (this.card?.card_type) {
       case "Monster":
-        this.card.id
         return MonsterCardComponent;
       break;
     case "Treasure":
@@ -59,38 +62,19 @@ export class CardComponent {
       return TrapCardComponent;
     }  
   }
-
+  
   toggleFlip() {
-    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
+    if(this.deActivate){
+      return;
+    } else {
+      this.flip = (this.flip == 'inactive') ? 'active' : 'inactive'
+      this.flipped.emit(true);
+      this.desactivateFlip();
+    }
   }
 
-  flip: string = 'active';
-  // cards$: Observable<Card[]> | any;
-  // cardMonster: Card[] = [];
-  // card: Card = {
-  //   id: 0,
-  //   card_image_path: '',
-  //   card_name: '',
-  //   card_type: '',
-  //   description: '',
-  //   score_value: 0
-  // };
-
-  // hp:number = 18;
-  // dmg:number = 50;
-  // constructor(private cardService: CardService){ }
-
-  // ngOnInit(): void {
-  //   this.cardService.getCard()
-  //   .pipe(
-  //     concatMap(cardMonster => cardMonster),
-  //     filter(card => card.card_type == "Monster")
-  //     )
-  //     .subscribe((res) => {
-  //       console.log(res);
-  //     })
-  // }
-
- 
-
+  desactivateFlip(){
+    this.deActivate = true;
+  }
+  
 }

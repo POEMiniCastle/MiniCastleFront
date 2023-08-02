@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map, of, tap } from 'rxjs';
 import { Card } from 'src/app/core/entities/card';
 import { Monster } from 'src/app/core/entities/monster';
+import { Trap } from 'src/app/core/entities/trap';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class CardService {
   urlCard:string = "http://localhost:8080/api/random";
 
   urlMonster:string = "http://localhost:8080/api/monstercard"
+
+  urlTrap:string = "http://localhost:8080/api/trapcard"
   
   constructor(private httpClient: HttpClient) {}
 
@@ -29,10 +32,16 @@ export class CardService {
   }
 
   getMonsterType(id:number): Observable<Monster> {
-    return this.httpClient.get<Monster>(this.urlMonster)
+    return this.httpClient.get<Monster>(this.urlMonster + "/" + id)
     .pipe (
       map((res : Monster) => (res))
     ) 
   }
 
+  getTrapType(id:number): Observable<Trap> {
+    return this.httpClient.get<Trap>(this.urlTrap + "/" + id)
+    .pipe (
+      map((res : Trap) => (res))
+    ) 
+  }
 }
