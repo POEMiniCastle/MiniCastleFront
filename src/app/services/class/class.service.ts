@@ -8,6 +8,7 @@ import { Class } from 'src/app/core/entities/class';
 })
 
   export class ClassService {
+    
     url: string = "http://localhost:8080/api/class";
 
     constructor(private httpClient: HttpClient) { }
