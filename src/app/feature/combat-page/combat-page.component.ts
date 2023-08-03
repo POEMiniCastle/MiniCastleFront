@@ -62,8 +62,7 @@ export class CombatPageComponent {
         this.skillCheck(this.trapSkillCheck);
 
       },
-  });        
-    
+    });        
   }
 
   getPlayerStats() {
@@ -83,7 +82,7 @@ export class CombatPageComponent {
       },
     });
   }
-  
+
   getCombatantsStats() {
     this.getPlayerStats();
     this.getMonsterStats();
