@@ -7,4 +7,6 @@ export interface Class {
     skill_description: string
     id: number
     imagePath: string
+    level: number
+    xp: number
 }
