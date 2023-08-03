@@ -40,6 +40,7 @@ import { CombatPageComponent } from './feature/combat-page/combat-page.component
 import { ConnexionFormComponent } from './feature/connexion-form/connexion-form.component';
 import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
 import { CombatLogComponent } from './layout/combat-log/combat-log.component';
+import { CardHeroesComponent } from './shared/card-heroes/card-heroes.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { CombatLogComponent } from './layout/combat-log/combat-log.component';
     CombatPageComponent,
     ConnexionFormComponent,
     PlayMenuComponent,
-    CombatLogComponent
+    CombatLogComponent,
+    CardHeroesComponent
   ],
   imports: [
     BrowserModule,

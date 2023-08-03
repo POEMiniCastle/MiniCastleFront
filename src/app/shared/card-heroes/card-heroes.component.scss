@@ -47,38 +47,63 @@
     min-height: 30vh !important;
     max-height: 30vh !important;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
     // min-width: 20vw !important;
-  }
+}
 
-.card_back {
-    transition-delay: 0.3s;
-    outline: 3px solid white;
-    outline-offset: -20px;
-    background-image:url("/assets/Mini_castle_blanc.webp");
-    background-size: 60%;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 5px solid #000214;
-   
-    .hide {
-        transition-delay: 0.3s;
-        visibility: hidden;
+
+.description{
+    margin-left: 8%;
+    width: 80%;
+}
+
+.hp-damage-heroes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    font-weight: bolder;
+    font-size: auto;
+
+    #hp{
+        background-color: black;
+        border-radius: 20px 0px 25px 0px;
+        padding: 15px 25px 15px 20px;
     }
-}
 
-.card_front {
-    transition-delay: 0.1s;
-    background: white;
-    .hide{
-        transition-delay: 0.20s;
+    #damage{
+        justify-content: end;
+        background-color: black;
+        border-radius: 0px 20px 0px 25px;
+        padding: 15px 20px 15px 20px;
     }
+  }  
+
+img{
+    width: 50%;
+    display: flex;
+    margin :auto;
 }
 
-.hide{
-    width: auto;
+#heroesName{
+    font-size: auto;
+    margin-top: 5%;
+    margin-bottom: 2%;
 }
 
-ng-template{
-    width: auto;
-    height: auto;
+#heroesSkillDescription{
+    font-size: 70%;
+    font-weight: bold;
+}
+
+#heroesSkillName{
+    font-size: 70%;
+    margin-bottom: auto;
+}
+
+.material-symbols-outlined{
+    color: black;
+    position: relative;
+    margin-top: 10px;
+    bottom: 0;
 }

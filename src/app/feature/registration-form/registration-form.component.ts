@@ -47,7 +47,7 @@ export class RegistrationFormComponent {
     this.playerService.register(new RegistrationPlayer(this.form.value.email, this.form.value.username, this.form.value.password))
     .subscribe({
       next: (response: Player) => {
-        sessionStorage.setItem("player", JSON.stringify(response));
+        localStorage.setItem("player", JSON.stringify(response));
         this.router.navigate(['/play-menu']);
       },
       error: (err) => console.error(err)

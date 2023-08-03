@@ -19,6 +19,7 @@ export class CombatPageComponent {
   visibilityVictoryVar!: string;
   visibilityDefeatVar!: string;
   result!: string;
+  opacityVar!:number;
 
   player!: Player;
   username!: string;
@@ -61,7 +62,7 @@ export class CombatPageComponent {
         this.skillCheck(this.trapSkillCheck);
 
       },
-});        
+  });        
     
   }
 
@@ -118,8 +119,6 @@ export class CombatPageComponent {
 
   skillCheck(skillCheck: number) {
     let rand = this.getRandom(0, 101)
-    console.log(rand);
-    console.log(skillCheck);
     if (rand > skillCheck) {
       this.result = "You managed to dodge " + this.cardHolder.card_name;
       this.displayMatchResult("victory");
@@ -141,14 +140,16 @@ export class CombatPageComponent {
   }
 
   displayMatchResult(matchResult: string) {
-    this.overBlurVar = "blur(50px)";
-    if (matchResult == "victory") {
+    this.overBlurVar = 'blur(8px)';
+    if (matchResult == 'victory') {
       this.player.character!.base_hp = this.playerHealth;
-      localStorage.setItem("player", JSON.stringify(this.player));
-      this.visibilityVictoryVar = "visible";
-    } else if (matchResult == "defeat") {
+      localStorage.setItem('player', JSON.stringify(this.player));
+      this.visibilityVictoryVar = 'visible';
+      this.opacityVar=100;
+    } else if (matchResult == 'defeat') {
       sessionStorage.clear();
-      this.visibilityDefeatVar = "visible";
+      this.visibilityDefeatVar = 'visible';
+      this.opacityVar=100;
     }
   }
 }

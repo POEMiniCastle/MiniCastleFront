@@ -1,13 +1,12 @@
 <body [style.--overBlur]="overBlurVar">
-    <a href="/play" [style.--isHidden]="visibilityVictoryVar">{{ result }}</a>
-    <a href="/play-menu" [style.--isHidden]="visibilityDefeatVar">{{ result }}</a>
+        <a href="/play" [style.--isHidden]="visibilityVictoryVar" [style.--isOpaq]="opacityVar" id="victory">{{ result }}</a>
+        <a href="/play-menu" [style.--isHidden]="visibilityDefeatVar" [style.--isOpaq]="opacityVar" id="defeat">{{ result }}</a>
     <app-combat-log [combatLog]="combatLog"></app-combat-log>
-    <div class="container">
-        <app-card-holder [card]=cardHolder id="card"></app-card-holder>
+    <div class="container col-6 d-flex flex-row flex-wrap gap-2">
+            <app-card-holder [card]=cardHolder id="card" [monsterHealth]="monsterHealth"></app-card-holder>
     </div>
-    
-    <app-card id="test"></app-card>
-    
+
+    <card-heroes id="hero" [heroesHealth]="playerHealth"></card-heroes>
     <footer>
         <app-player-combat-interface (clicked)="determinePlayerMove($event)"></app-player-combat-interface>
     </footer>

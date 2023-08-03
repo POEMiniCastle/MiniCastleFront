@@ -1,35 +1,64 @@
+
 .container{
     display: flex;
     min-height: 92.5%;
     max-height: 93%;
-    justify-content: center;
     margin: auto;
     width: 100%;
     justify-content: center;
     filter: var(--overBlur);
+    transition-delay: 0.5s;
+    transition-property: all;
+    transition-timing-function: ease-in;
+    transition-duration: 0.2s;
 }
 
-a{
+#card{
+    display: flex;
+    align-items: center;
+}
+
+
+#victory{
     position: absolute;
     z-index: 5;
     text-decoration: none;
-    margin-top: 10%;
-    margin-left: 27%;
-    font-size: 200px;
-    color: red;
+    text-align: center;
+    margin-left: 25%;
+    margin-top: 15%;
+    font-size: calc(100px + 0.390625vw);;
+    width: 50%;
     visibility: var(--isHidden, hidden);
+    opacity: var(--isOpaq, 0);
+    transition-delay: 0.5s;
+    transition-property: all;
+    transition-timing-function: ease-in;
+    transition-duration: 0.2s;
 }
 
-
-#card{
+#defeat{
     position: absolute;
-    top: 20%;
+    z-index: 5;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 25%;
+    margin-top: 5%;
+    font-size: calc(100px + 0.390625vw);;
+    width: 50%;
+    visibility: var(--isHidden, hidden);
+    opacity: var(--isOpaq, 0);
+    transition-delay: 0.5s;
+    transition-property: all;
+    transition-timing-function: ease-in;
+    transition-duration: 0.2s;
 }
+
 footer{
     margin-top: auto;
+    bottom: 0;
 }
 
-#test{
+#hero{
     bottom: 0;
     transform: translateY(150px);
     position: absolute;
@@ -38,7 +67,7 @@ footer{
     margin-left: 30%;
 }
 
-#test:hover{
+#hero:hover{
     transform: translateY(0px); 
 }
 

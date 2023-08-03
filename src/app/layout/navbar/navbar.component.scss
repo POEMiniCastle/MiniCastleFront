@@ -64,7 +64,7 @@
             align-items: center;
             height: 3rem;
             color: #000214;
-            border-radius: 0.625rem;
+            border-radius: 0.225rem;
             text-decoration: none;
             transition: color .3s ease;
 
@@ -93,6 +93,7 @@
 
 
 .active{
+    width: 135%;
     background-color: #000214;
     .material-symbols-outlined{
         color: white;
