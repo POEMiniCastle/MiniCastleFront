@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./combat-log.component.scss']
 })
 export class CombatLogComponent {
-  @Input() combatLog: Array<string> = ["Premier log","Deuxieme log","Troisieme log"];
+  @Input() combatLog: Array<string> = [];
 
 }
