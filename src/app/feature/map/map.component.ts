@@ -13,14 +13,14 @@ import { CardService } from 'src/app/services/card/card.service';
 })
 
 export class MapComponent {
-  
+
   cardTable: Card[] = [];
   isActiveMap:Map<number, boolean> = new Map();
   PositionMap:Map<number, number> = new Map();
   overBlurVar!:string;
   visibilityVar!:string;
   cardTemp!: Card;
-  counter!:number;
+  
 
   constructor(private cardService: CardService){ }
 
@@ -36,7 +36,7 @@ export class MapComponent {
     this.cardService.getCard()
       .subscribe(cards => {
           this.cardTable = cards;
-          for(let i=0; i<= this.cardTable.length; i++){
+          for(let i = 0; i <= this.cardTable.length; i++){
             this.isActiveMap.set(i, true);
           }
           this.isActiveMap.set(0, false);
@@ -50,9 +50,6 @@ export class MapComponent {
     if(blur!=0){
       this.getBlurry();
       this.disabledCard();
-      if(this.counter == 5){
-        sessionStorage.clear();
-      }
     }
   }
 
@@ -68,9 +65,7 @@ export class MapComponent {
   
   getBlurry(){
     this.overBlurVar='blur(8px)';
-    this.visibilityVar = 'visible';
-    this.counter =+1;
-    console.log(this.counter);
+    this.visibilityVar = 'visible';    
   }
 
   createPosition(){
@@ -83,12 +78,17 @@ export class MapComponent {
     if(sessionStorage.getItem("event") != null){
       this.cardTemp = JSON.parse(sessionStorage.getItem("event") as string);
         for(let i = 0; i <= this.PositionMap.size; i++){
-          if(this.PositionMap.get(i) == this.cardTemp.localID) 
+          if(this.PositionMap.get(i) == this.cardTemp.localID){
             this.changeState(false, i,0);
-          }
-    } else {
-      return;
-  }
+          } else if (this.cardTemp.localID == 8){
+            console.log("je suis là")
+            sessionStorage.clear();
+            this.getCards();
+          } 
+        }
+      } else {
+        return;
+    }
   }
 
   disabledCard(){
@@ -97,4 +97,5 @@ export class MapComponent {
     }
   }
 }
+
 
