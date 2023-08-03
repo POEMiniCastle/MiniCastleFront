@@ -42,9 +42,8 @@ export class CombatPageComponent {
     this.cardHolder = JSON.parse(sessionStorage.getItem('event') as string);
 
     if (this.cardHolder.card_type == 'Trap') {
-      this.getTrapStats();
       this.getPlayerStats();
-      this.skillCheck(this.trapSkillCheck);
+      this.getTrapStats();
     } else if (this.cardHolder.card_type == 'Monster') {
       this.getCombatantsStats();
     }
@@ -52,12 +51,15 @@ export class CombatPageComponent {
 
   getTrapStats() {
     this.cardService.getTrapType(this.cardHolder.id).subscribe({
-      next: (trap) => {
-        this.trap = trap;
+      next: (traps) => {
+          this.trap = traps;
         this.trapDamage = this.trap.damage;
-        this.trapSkillCheck = this.trap.skillcheck;
+        this.trapSkillCheck = this.trap.skillCheck;
+        this.skillCheck(this.trapSkillCheck);
+
       },
-    });
+});        
+    
   }
 
   getPlayerStats() {
@@ -108,31 +110,27 @@ export class CombatPageComponent {
   }
 
   skillCheck(skillCheck: number) {
-    if (this.getRandom(0, 101) > skillCheck) {
-      this.result = 'You managed to dodge' + this.cardHolder.card_name;
+    let rand = this.getRandom(0, 101)
+    console.log(rand);
+    console.log(skillCheck);
+    if (rand > skillCheck) {
+      this.result = 'You managed to dodge ' + this.cardHolder.card_name;
       this.displayMatchResult('victory');
-    } else {
+    } else if (rand < skillCheck){
       this.playerHealth = -this.trapDamage;
       if (this.playerHealth > 0) {
-        this.result =
-          "You didn't manage to dodge " +
-          this.cardHolder.card_name +
-          'and took ' +
-          this.trapDamage +
-          'damage';
+        this.result ="You didn't manage to dodge " + this.cardHolder.card_name +' and took ' + this.trapDamage + 'damage';
         this.displayMatchResult('victory');
       } else {
-        this.result =
-          "You didn't manage to dodge " +
-          this.cardHolder.card_name +
-          'and died to it';
+        this.result ="You didn't manage to dodge " +this.cardHolder.card_name +' and died to it';
         this.displayMatchResult('defeat');
       }
     }
   }
 
   getRandom(min: number, max: number) {
-    return Math.random() * (max - min) + min;
+    let res = Math.random() * (max - min) + min;
+    return res;
   }
 
   displayMatchResult(matchResult: string) {
