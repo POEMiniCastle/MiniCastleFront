@@ -4,11 +4,11 @@
             <ul>
                 <li><img src="..\..\..\assets\Mini_castle_noir.png" alt="logo" id="logo"></li>   
                 <ng-container>
-                    <li><a routerLink='/classes'>New game</a></li>
+                    <li><a routerLink='/classes' (click)="newGame()">New game</a></li>
                     <li><hr></li>
                     <li ><a routerLink='.'>Load game</a></li>
                     <li><hr></li>
-                    <li><a routerLink='/'>Quit</a></li>
+                    <li><a routerLink='/' (click)="deconnexion()">Deconnexion</a></li>
                 </ng-container>
             </ul>
         </div>     

@@ -73,6 +73,7 @@ export class CombatPageComponent {
     this.playerHealth = this.player.character!.base_hp;
     this.playerArmor = this.player.character!.base_armor;
   }
+
   getMonsterStats() {
     this.cardService.getMonsterType(this.cardHolder.id).subscribe({
       next: (monsters) => {
@@ -82,6 +83,7 @@ export class CombatPageComponent {
       },
     });
   }
+  
   getCombatantsStats() {
     this.getPlayerStats();
     this.getMonsterStats();

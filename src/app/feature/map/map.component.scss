@@ -1,31 +1,44 @@
 .container{
-    width: 100%;
     margin-top: 2%;
     justify-content: center;
     filter: var(--overBlur);
-    transition-delay: 2s;
+    transition-delay: 1s;
     transition-property: all;
     transition-timing-function: ease-in;
     transition-duration: 0.2s;
 }
+
 @media (width > 1200px) {
     .container{
         width: 50%;
+        height:50%;
     }  
 }
 
 a{
+    font-family:'Roboto';
     position: absolute;
     z-index: 5;
     text-decoration: none;
     opacity: var(--isOpaq, 0);
     margin-top: 23%;
-    margin-left: 27%;
-    font-size: 200px;
-    color: red;
+    margin-left: 18%;
+    font-size: calc(20em + 0.390625vw);
+    width: 50%;
+    color: gray;
     visibility: var(--isHidden, hidden);
-    transition-delay: 2s;
+    transition-delay: 1s;
     transition-property: all;
     transition-timing-function: ease-in;
     transition-duration: 0.22s;
+}
+
+.COMBAT{
+    height: min-content;
+}
+
+#test{
+    width: 100%;
+    position: absolute;
+    z-index: 5;
 }

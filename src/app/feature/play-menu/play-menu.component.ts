@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class PlayMenuComponent {
   
+  deconnexion(){
+    localStorage.clear();
+    sessionStorage.clear();
+  }
+
+  newGame(){
+    sessionStorage.clear();
+  }
 }

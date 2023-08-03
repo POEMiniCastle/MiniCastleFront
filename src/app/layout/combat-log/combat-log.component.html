@@ -1,6 +1,10 @@
-<h2> COMBAT LOG </h2>
-    <ul *ngFor="let combatLogs of combatLog">
-        <li>
-            <p>{{ combatLogs }}</p>
-        </li>
-    </ul>
+<div>
+    <h2> COMBAT LOG </h2>
+        <div id="scrollable">
+            <ul *ngFor="let combatLogs of combatLog">
+                <li>
+                    <p>{{ combatLogs }}</p>
+                </li>
+            </ul>
+        </div>
+</div>

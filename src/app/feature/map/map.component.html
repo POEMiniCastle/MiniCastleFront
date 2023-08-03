@@ -1,6 +1,6 @@
 <div class="COMBAT">
   <a href="/combat" [style.--isHidden]="visibilityVar" [style.--isOpaq]="opacityVar">COMBAT</a>
-
+ 
   <div class="container col-6 d-flex flex-row flex-wrap gap-2" [style.--overBlur]="overBlurVar">
     <div *ngFor="let card of cardTable, let index = index" class="col-3">
       <app-card [card]= cardTable[index] [deActivate]="isActiveMap.get(index)" (flipped)="changeState($event, index,1)" id=index></app-card>

@@ -98,6 +98,7 @@ export class MapComponent {
       this.isActiveMap.set(i, true);
     }
   }
+
 }
 
 

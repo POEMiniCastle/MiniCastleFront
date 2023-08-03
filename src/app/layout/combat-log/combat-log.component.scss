@@ -1,0 +1,14 @@
+p{
+    font-size: 80%;
+}
+
+
+@counter-style sword {
+    system: cyclic;
+    symbols: "\2694";
+    suffix: " ";
+  }
+
+  ul {
+    list-style: sword;
+  }

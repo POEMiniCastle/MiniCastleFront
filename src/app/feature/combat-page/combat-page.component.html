@@ -1,7 +1,9 @@
 <body [style.--overBlur]="overBlurVar">
         <a href="/play" [style.--isHidden]="visibilityVictoryVar" [style.--isOpaq]="opacityVar" id="victory">{{ result }}</a>
         <a href="/play-menu" [style.--isHidden]="visibilityDefeatVar" [style.--isOpaq]="opacityVar" id="defeat">{{ result }}</a>
+        
     <app-combat-log [combatLog]="combatLog"></app-combat-log>
+
     <div class="container col-6 d-flex flex-row flex-wrap gap-2">
             <app-card-holder [card]=cardHolder id="card" [monsterHealth]="monsterHealth"></app-card-holder>
     </div>
