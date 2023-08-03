@@ -39,6 +39,7 @@ import { TrapCardComponent } from './shared/card/trap-card/trap-card.component';
 import { CombatPageComponent } from './feature/combat-page/combat-page.component';
 import { ConnexionFormComponent } from './feature/connexion-form/connexion-form.component';
 import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
+import { CombatLogComponent } from './layout/combat-log/combat-log.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
     TrapCardComponent,
     CombatPageComponent,
     ConnexionFormComponent,
-    PlayMenuComponent
+    PlayMenuComponent,
+    CombatLogComponent
   ],
   imports: [
     BrowserModule,

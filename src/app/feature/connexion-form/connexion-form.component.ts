@@ -14,7 +14,7 @@ import { PlayerService } from 'src/app/services/player/player.service';
 export class ConnexionFormComponent {
   form: UntypedFormGroup;
   
-  constructor(formBuilder: FormBuilder, private httpClient: HttpClient, private playerService: PlayerService, private router:Router) {
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private playerService: PlayerService, private router:Router) {
     this.form = formBuilder.group({
       username: new UntypedFormControl('', Validators.required),
       password: new UntypedFormControl('', Validators.required),

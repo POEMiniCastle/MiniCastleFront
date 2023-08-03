@@ -1,24 +1,27 @@
-import { Component } from '@angular/core';
-import { Player } from 'src/app/core/entities/Player';
-import { Card } from 'src/app/core/entities/card';
-import { Monster } from 'src/app/core/entities/monster';
-import { Trap } from 'src/app/core/entities/trap';
-import { CardService } from 'src/app/services/card/card.service';
+import { Component, Input  } from "@angular/core";
+import { Player } from "src/app/core/entities/Player";
+import { Card } from "src/app/core/entities/card";
+import { Monster } from "src/app/core/entities/monster";
+import { Trap } from "src/app/core/entities/trap";
+import { CardService } from "src/app/services/card/card.service";
 
 @Component({
-  selector: 'app-combat-page',
-  templateUrl: './combat-page.component.html',
-  styleUrls: ['./combat-page.component.scss'],
+  selector: "app-combat-page",
+  templateUrl: "./combat-page.component.html",
+  styleUrls: ["./combat-page.component.scss"],
 })
 export class CombatPageComponent {
+  combatLog: Array<string> = [];
+
   cardHolder!: Card;
-  flip: string = 'active';
+  flip: string = "active";
   overBlurVar!: string;
   visibilityVictoryVar!: string;
   visibilityDefeatVar!: string;
   result!: string;
 
   player!: Player;
+  username!: string;
   playerDamage!: number;
   playerHealth!: number;
   playerArmor!: number;
@@ -35,16 +38,16 @@ export class CombatPageComponent {
   constructor(private cardService: CardService) {}
 
   ngOnInit() {
-    this.getInfoCard();
+    this.getInfoCard();   
   }
 
   getInfoCard() {
-    this.cardHolder = JSON.parse(sessionStorage.getItem('event') as string);
+    this.cardHolder = JSON.parse(sessionStorage.getItem("event") as string);
 
-    if (this.cardHolder.card_type == 'Trap') {
+    if (this.cardHolder.card_type == "Trap") {
       this.getPlayerStats();
       this.getTrapStats();
-    } else if (this.cardHolder.card_type == 'Monster') {
+    } else if (this.cardHolder.card_type == "Monster") {
       this.getCombatantsStats();
     }
   }
@@ -63,7 +66,8 @@ export class CombatPageComponent {
   }
 
   getPlayerStats() {
-    this.player = JSON.parse(localStorage.getItem('player') as string);
+    this.player = JSON.parse(localStorage.getItem("player") as string);
+    this.username = this.player.username;
     this.playerDamage = this.player.character!.base_damage;
     this.playerHealth = this.player.character!.base_hp;
     this.playerArmor = this.player.character!.base_armor;
@@ -83,29 +87,32 @@ export class CombatPageComponent {
   }
 
   determinePlayerMove(action: string) {
-    if (action == 'attack') {
+    if (action == "attack") {
+      this.combatLog.push(this.username+" deals "+this.playerDamage+" damage to "+this.cardHolder.card_name+".")
       this.monsterHealth -= this.playerDamage;
+      this.combatLog.push(this.cardHolder.card_name+" has "+this.monsterHealth+" health points left.")
       if (this.monsterHealth <= 0) {
-        this.result = 'VICTORY';
-        this.displayMatchResult('victory');
+        this.combatLog.push(this.cardHolder.card_name+" has died.");
+        this.result = "VICTORY";
+        this.displayMatchResult("victory");
       } else {
-        console.log('Monster remaining health : ' + this.monsterHealth);
         this.calculatedDamage = this.monsterDamage - Math.round(this.playerArmor * 0.1);
         if (this.calculatedDamage > 0) {
+          this.combatLog.push(this.cardHolder.card_name+" deals "+this.calculatedDamage+" damage to "+this.username+".")
           this.playerHealth -= this.monsterDamage - Math.round(this.playerArmor * 0.1);
+        }else if (this.calculatedDamage <= 0){
+          this.combatLog.push(this.cardHolder.card_name+" try to hit "+this.username+" but his armor is too strong (GIT GUD).")
         }
         if (this.playerHealth <= 0) {
-          this.result =
-            'YOU HAVE BEEN SUNDERED BY A ' +
-            this.cardHolder.card_name.toUpperCase();
-          this.displayMatchResult('defeat');
+          this.result = "YOU HAVE BEEN SUNDERED BY A "+this.cardHolder.card_name.toUpperCase()+" GIT GUD KIDDO";
+          this.displayMatchResult("defeat");
         }
       }
-      console.log('Player remaining health : ' + this.playerHealth);
-    } else if (action == 'defend') {
-      console.log('defense');
+      console.log("Player remaining health : " + this.playerHealth);
+    } else if (action == "defend") {
+      console.log("defense");
     } else {
-      console.log('THE PRESSURE WAS TOO BIG, YOU CHOOSED TO LEAVE');
+      console.log("THE PRESSURE WAS TOO BIG, YOU CHOOSED TO LEAVE.");
     }
   }
 
@@ -114,16 +121,16 @@ export class CombatPageComponent {
     console.log(rand);
     console.log(skillCheck);
     if (rand > skillCheck) {
-      this.result = 'You managed to dodge ' + this.cardHolder.card_name;
-      this.displayMatchResult('victory');
+      this.result = "You managed to dodge " + this.cardHolder.card_name;
+      this.displayMatchResult("victory");
     } else if (rand < skillCheck){
-      this.playerHealth = -this.trapDamage;
+      this.playerHealth -= this.trapDamage;
       if (this.playerHealth > 0) {
-        this.result ="You didn't manage to dodge " + this.cardHolder.card_name +' and took ' + this.trapDamage + 'damage';
-        this.displayMatchResult('victory');
-      } else {
-        this.result ="You didn't manage to dodge " +this.cardHolder.card_name +' and died to it';
-        this.displayMatchResult('defeat');
+        this.result ="You didn't manage to dodge " + this.cardHolder.card_name +" and took " + this.trapDamage + "damage";
+        this.displayMatchResult("victory");
+      } else if (this.playerHealth < 0){
+        this.result ="You didn't manage to dodge " +this.cardHolder.card_name +" and died to it";
+        this.displayMatchResult("defeat");
       }
     }
   }
@@ -134,14 +141,14 @@ export class CombatPageComponent {
   }
 
   displayMatchResult(matchResult: string) {
-    this.overBlurVar = 'blur(50px)';
-    if (matchResult == 'victory') {
+    this.overBlurVar = "blur(50px)";
+    if (matchResult == "victory") {
       this.player.character!.base_hp = this.playerHealth;
-      localStorage.setItem('player', JSON.stringify(this.player));
-      this.visibilityVictoryVar = 'visible';
-    } else if (matchResult == 'defeat') {
+      localStorage.setItem("player", JSON.stringify(this.player));
+      this.visibilityVictoryVar = "visible";
+    } else if (matchResult == "defeat") {
       sessionStorage.clear();
-      this.visibilityDefeatVar = 'visible';
+      this.visibilityDefeatVar = "visible";
     }
   }
 }
