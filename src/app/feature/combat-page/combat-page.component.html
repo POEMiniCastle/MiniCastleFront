@@ -3,10 +3,10 @@
     <a href="/play-menu" [style.--isHidden]="visibilityDefeatVar">{{ result }}</a>
 
     <div class="container">
-        <app-card-holder [card]=cardHolder id="card"></app-card-holder>
+        <app-card-holder [card]=cardHolder id="card" [monsterHealth]="monsterHealth"></app-card-holder>
     </div>
 
-    <app-card id="test"></app-card>
+    <card-heroes id="hero" [heroesHealth]="playerHealth"></card-heroes>
     <footer>
         <app-player-combat-interface (clicked)="determinePlayerMove($event)"></app-player-combat-interface>
     </footer>

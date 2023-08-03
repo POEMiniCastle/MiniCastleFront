@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChange, SimpleChanges } from '@angular/core';
 import { Card } from 'src/app/core/entities/card';
 import { Monster } from 'src/app/core/entities/monster';
 import { CardService } from 'src/app/services/card/card.service';
@@ -24,6 +24,8 @@ import { CardService } from 'src/app/services/card/card.service';
 
 export class MonsterCardComponent {
   @Input() card?: Card;
+  @Input() monsterHealth?: number;
+
   monsterCard?:Monster;
 
   flip: string = 'active'; 
@@ -33,6 +35,15 @@ export class MonsterCardComponent {
   ngOnInit(){
     if(this.card){
       this.getMonsterInfo(this.card.id);
+      if(this.monsterCard)
+        this.monsterHealth = this.monsterCard?.hp;
+        console.log(this.monsterHealth)
+    }
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['monsterHealth']){
+      
     }
   }
 

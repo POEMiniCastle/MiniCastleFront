@@ -10,13 +10,16 @@ import { TreasureCardComponent } from '../card/treasure-card/treasure-card.compo
   templateUrl: './card-holder.component.html',
   styleUrls: ['./card-holder.component.scss']
 })
+
 export class CardHolderComponent {
   @ViewChild(AdDirective, {static: true}) adHost!: AdDirective;
 
   @Input() card!: Card;
+  @Input() monsterHealth!:number;
 
   ngOnInit():void{
       this.loadComponent();   
+      console.log(this.monsterHealth)
   }
 
   loadComponent(){

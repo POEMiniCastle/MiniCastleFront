@@ -1,0 +1,22 @@
+<div class="template-card">
+    <div class="hide">
+        <div class="hp-damage-heroes" role="group">
+            <span id="hp">{{ heroesHealth }}</span>
+
+            <span id="damage">{{ heroes?.base_damage }}</span>
+        </div>
+
+        <div class="heros">
+            <img src="assets/{{heroes?.imagePath}}" id="imageHeroes">
+        </div>
+
+        <div class="description">
+            <h4 id="heroesName">{{ heroes?.name }}</h4>
+            <p id="heroesSkillName">{{ heroes?.skill_name}} : </p>
+            <p id="heroesSkillDescription">
+                {{ heroes?.skill_description }}
+            </p>
+        </div>
+        <span class="material-symbols-outlined">sword_rose</span>
+    </div>
+</div>
