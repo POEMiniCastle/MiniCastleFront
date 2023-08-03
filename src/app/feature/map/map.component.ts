@@ -19,6 +19,7 @@ export class MapComponent {
   PositionMap:Map<number, number> = new Map();
   overBlurVar!:string;
   visibilityVar!:string;
+  opacityVar!:string;
   cardTemp!: Card;
   
 
@@ -66,6 +67,7 @@ export class MapComponent {
   getBlurry(){
     this.overBlurVar='blur(8px)';
     this.visibilityVar = 'visible';    
+    this.opacityVar = '100';    
   }
 
   createPosition(){

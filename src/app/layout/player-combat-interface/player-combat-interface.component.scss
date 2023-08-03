@@ -11,44 +11,34 @@ footer {
     padding-top: 3vh;
 }
 
-// a{
-//     color: black;
-//     opacity: 50%;
-//     font-size: larger;
-//     text-decoration: none;
-//     margin-right: 20%;
-// }
-
-a{
+.button{
     color: black;
     opacity: 50%;
     font-size: larger;
-    text-decoration: none;
-    margin-right: 20%;
-    justify-content: center;
-    position: relative;
-    overflow:hidden;
     border: none;
     background: none;
+    display: flex;
+    justify-content: center;
 }
 
-a:before{
+.button:before{
     content:'▷';
+    display: flex;
+    align-items: center;
+    left: 25px;
     font-size:10px;
     color:black;
-    position:absolute;
-    left:-2.5em;
+    margin-right: 5px;
     opacity:0;
-    padding-top: 0.5vh;
-    transition:all .5s ease-in-out;
+    transition:all .1s ease-in-out;
 }
 
-a:hover:before{
-    left:-1.5em;
+.button:hover:before{
+    left:-15.5px;
     opacity:1;
 }
 
-a:hover {
+.button:hover {
     color: black;
     opacity: 100%;
 }   
