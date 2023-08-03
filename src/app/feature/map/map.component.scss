@@ -1,11 +1,6 @@
 .container{
     margin-top: 2%;
-    justify-content: center;
-    filter: var(--overBlur);
-    transition-delay: 1s;
-    transition-property: all;
-    transition-timing-function: ease-in;
-    transition-duration: 0.2s;
+    justify-content: center;    
 }
 
 @media (width > 1200px) {
@@ -25,7 +20,7 @@ a{
     margin-left: 18%;
     font-size: calc(20em + 0.390625vw);
     width: 50%;
-    color: gray;
+    color: #931621;
     visibility: var(--isHidden, hidden);
     transition-delay: 1s;
     transition-property: all;
@@ -33,12 +28,34 @@ a{
     transition-duration: 0.22s;
 }
 
-.COMBAT{
+.combatPage{
     height: min-content;
+    filter: var(--overBlur);
+    transition-delay: 1s;
+    transition-property: all;
+    transition-timing-function: ease-in;
+    transition-duration: 0.3s;
+    
 }
 
 #test{
     width: 100%;
     position: absolute;
     z-index: 5;
+}
+
+#imageRender{
+    width: 90%;
+    margin-left: 6%;
+    margin-top: -5%;
+    position: absolute;
+    z-index: 5;
+    opacity: var(--isOpaq, 0);
+    visibility: var(--isHidden, hidden);
+    transition-delay: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease-in;
+    transition-duration: 0.22s;
+
+    
 }

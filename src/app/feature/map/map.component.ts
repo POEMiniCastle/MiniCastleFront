@@ -21,6 +21,7 @@ export class MapComponent {
   visibilityVar!:string;
   opacityVar!:string;
   cardTemp!: Card;
+  currentImageIndex:number = 0;
   
 
   constructor(private cardService: CardService){ }
@@ -68,6 +69,7 @@ export class MapComponent {
     this.overBlurVar='blur(8px)';
     this.visibilityVar = 'visible';    
     this.opacityVar = '100';    
+    this.startAnimate();
   }
 
   createPosition(){
@@ -98,7 +100,39 @@ export class MapComponent {
       this.isActiveMap.set(i, true);
     }
   }
+  getCurrentIndexImage(value:number){
+    if(value < 10){
+      return 0;
+    } else {
+      return value;
+    }
+  }
 
+  animate(){
+    requestAnimationFrame(()=> {
+      setTimeout(() => {
+        this.animate();
+      }, 1000/25);
+      
+    })
+    const combat = document.getElementById('imageRender') as HTMLImageElement | null;
+    if(combat !=null){
+      combat!.src = 'assets/combat/'+ this.getCurrentIndexImage(this.currentImageIndex) + '.webp';
+      if(this.currentImageIndex < 99){
+        this.currentImageIndex++;
+      }else{
+        this.currentImageIndex = 99;
+      }
+    }
+  }
+
+  startAnimate(){
+    this.animate()
+  }
+
+  redirect(){
+    window.location.href="/combat";
+  }
 }
 
 
