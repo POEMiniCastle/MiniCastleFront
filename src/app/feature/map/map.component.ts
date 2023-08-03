@@ -20,6 +20,7 @@ export class MapComponent {
   overBlurVar!:string;
   visibilityVar!:string;
   cardTemp!: Card;
+  counter!:number;
 
   constructor(private cardService: CardService){ }
 
@@ -49,6 +50,9 @@ export class MapComponent {
     if(blur!=0){
       this.getBlurry();
       this.disabledCard();
+      if(this.counter == 5){
+        sessionStorage.clear();
+      }
     }
   }
 
@@ -65,6 +69,8 @@ export class MapComponent {
   getBlurry(){
     this.overBlurVar='blur(8px)';
     this.visibilityVar = 'visible';
+    this.counter =+1;
+    console.log(this.counter);
   }
 
   createPosition(){
@@ -76,7 +82,7 @@ export class MapComponent {
   checkPosition(){
     if(sessionStorage.getItem("event") != null){
       this.cardTemp = JSON.parse(sessionStorage.getItem("event") as string);
-        for(let i =0; i <= this.PositionMap.size; i++){
+        for(let i = 0; i <= this.PositionMap.size; i++){
           if(this.PositionMap.get(i) == this.cardTemp.localID) 
             this.changeState(false, i,0);
           }
