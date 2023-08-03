@@ -28,8 +28,4 @@ export class NavbarComponent {
     this.collapsed = false;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
-
-  clicko() {
-    console.log("coucou");
-}
 }

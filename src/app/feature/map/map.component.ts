@@ -48,13 +48,12 @@ export class MapComponent {
     this.changeStateAfterChoose(index);
     if(blur!=0){
       this.getBlurry();
+      this.disabledCard();
     }
   }
 
   changeStateAfterChoose(index:number){
-    for(let i = 0; i<= this.cardTable.length; i++){
-      this.isActiveMap.set(i, true);
-    }
+    this.disabledCard();
     if(index == 2 || index === 5){
       this.isActiveMap.set(index+3, false); 
     } else {
@@ -84,6 +83,12 @@ export class MapComponent {
     } else {
       return;
   }
+  }
+
+  disabledCard(){
+    for(let i = 0; i<= this.cardTable.length; i++){
+      this.isActiveMap.set(i, true);
+    }
   }
 }
 
