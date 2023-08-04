@@ -17,11 +17,11 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'Register',
+    path: 'register',
     component: RegistrationFormComponent
   },
   {
-    path: 'Connection',
+    path: 'connexion',
     component: ConnexionFormComponent
   },
   {

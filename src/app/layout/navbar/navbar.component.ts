@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output, SimpleChange, SimpleChanges } from '@angular/core';
-import { navbarData } from './nav-data';
+import { NavBarService } from 'src/app/services/nav-bar.service';
+import { navData } from './navData';
+import { navBarData } from './navBarData';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -18,19 +20,36 @@ export class NavbarComponent {
 
   collapsed = false;
   screenWidth = 0;
-  navData = navbarData;
+  navData?:navBarData[];
+
+  constructor(private navBar:NavBarService){}
 
   ngOnInit(){
     if(localStorage.getItem("player") !== null ){
-      this.checkingConnexion();
+      this.navBar.getNavBarContent("http://localhost:8080/navBarAllContent")
+      .subscribe({
+        next: res =>{ 
+        this.navData = res,
+        console.log(this.navData);
+        }
+      })
+    } else {
+      this.navBar.getNavBarContent("http://localhost:8080/navBarContent")
+      .subscribe({
+        next: res => { 
+          this.navData = res,
+          console.log(this.navData);
+          }
+      })
     }
   }
 
-  ngOnChange(change : SimpleChange){
-    if(navbarData[0].routeLink !== ''){
-      this.checkingConnexion();
+  ngOnLoad(){
+    if(localStorage.getItem("player") !== null ){
+      console.log("DOug");
     }
   }
+
   toggleCollapse(): void{
     this.collapsed = !this.collapsed;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
@@ -43,7 +62,7 @@ export class NavbarComponent {
 
   checkingConnexion(){
     if(localStorage.getItem("player") !== null ){
-      navbarData[0].routeLink = 'play-menu';
+     
     }
   }
 }

@@ -118,10 +118,10 @@ export class MapComponent {
     const combat = document.getElementById('imageRender') as HTMLImageElement | null;
     if(combat !=null){
       combat!.src = 'assets/combat/'+ this.getCurrentIndexImage(this.currentImageIndex) + '.webp';
-      if(this.currentImageIndex < 99){
+      if(this.currentImageIndex < 30){
         this.currentImageIndex++;
       }else{
-        this.currentImageIndex = 99;
+        this.currentImageIndex = 30;
       }
     }
   }
