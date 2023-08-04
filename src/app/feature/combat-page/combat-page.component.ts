@@ -26,6 +26,7 @@ export class CombatPageComponent {
   playerDamage!: number;
   playerHealth!: number;
   playerArmor!: number;
+  spellLeft!: number;
 
   monster?: Monster;
   monsterDamage!: number;
@@ -90,31 +91,39 @@ export class CombatPageComponent {
 
   determinePlayerMove(action: string) {
     if (action == "attack") {
-      this.combatLog.push(this.username+" deals "+this.playerDamage+" damage to "+this.cardHolder.card_name+".")
-      this.monsterHealth -= this.playerDamage;
-      this.combatLog.push(this.cardHolder.card_name+" has "+this.monsterHealth+" health points left.")
-      if (this.monsterHealth <= 0) {
-        this.combatLog.push(this.cardHolder.card_name+" has died.");
-        this.result = "VICTORY";
-        this.displayMatchResult("victory");
-      } else {
-        this.calculatedDamage = this.monsterDamage - Math.round(this.playerArmor * 0.1);
-        if (this.calculatedDamage > 0) {
-          this.combatLog.push(this.cardHolder.card_name+" deals "+this.calculatedDamage+" damage to "+this.username+".")
-          this.playerHealth -= this.monsterDamage - Math.round(this.playerArmor * 0.1);
-        }else if (this.calculatedDamage <= 0){
-          this.combatLog.push(this.cardHolder.card_name+" try to hit "+this.username+" but his armor is too strong (GIT GUD).")
-        }
-        if (this.playerHealth <= 0) {
-          this.result = "YOU HAVE BEEN SUNDERED BY A "+this.cardHolder.card_name.toUpperCase()+" GIT GUD KIDDO";
-          this.displayMatchResult("defeat");
-        }
-      }
-      console.log("Player remaining health : " + this.playerHealth);
-    } else if (action == "defend") {
-      console.log("defense");
+     this.playerTurn(this.playerDamage); 
+    } else if (action == "skill") {
+      this.skill();
+    } else if (action == "flee"){
+      this.result = "NO PEACE FOR COWARDS"+" YOU DIED";
+      this.displayMatchResult("defeat");
+    }
+  }
+
+  playerTurn(damage:number){
+    this.combatLog.push(this.username+" deals "+damage+" damage to "+this.cardHolder.card_name+".");
+    this.monsterHealth -= damage;
+    this.combatLog.push(this.cardHolder.card_name+" has "+this.monsterHealth+" health points left.");
+    if (this.monsterHealth <= 0) {
+      this.combatLog.push(this.cardHolder.card_name+" has died.");
+      this.result = "VICTORY";
+      this.displayMatchResult("victory");
     } else {
-      console.log("THE PRESSURE WAS TOO BIG, YOU CHOOSED TO LEAVE.");
+      this.monsterTurn();
+    }
+  }
+
+  monsterTurn(){
+    this.calculatedDamage = this.monsterDamage - Math.round(this.playerArmor * 0.1);
+    if (this.calculatedDamage > 0) {
+      this.combatLog.push(this.cardHolder.card_name+" deals "+this.calculatedDamage+" damage to "+this.username+".")
+      this.playerHealth -= this.monsterDamage - Math.round(this.playerArmor * 0.1);
+    }else if (this.calculatedDamage <= 0){
+      this.combatLog.push(this.cardHolder.card_name+" try to hit "+this.username+" but his armor is too strong (GIT GUD).")
+    }
+    if (this.playerHealth <= 0) {
+      this.result = "YOU HAVE BEEN SUNDERED BY A "+this.cardHolder.card_name.toUpperCase()+" GIT GUD KIDDO";
+      this.displayMatchResult("defeat");
     }
   }
 
@@ -151,6 +160,25 @@ export class CombatPageComponent {
       sessionStorage.clear();
       this.visibilityDefeatVar = 'visible';
       this.opacityVar=100;
+    }
+  }
+  skill(){
+    if(sessionStorage.getItem("spellLeft") == "0"){
+      this.combatLog.push("You don't have any spell left.")
+    }else if(this.player.character?.skill_name == 'Going berserk'){
+      this.combatLog.push(this.username+" sacrifices health to gain damage");
+      sessionStorage.setItem("spellLeft","0");
+      this.playerDamage += 5;
+      this.playerHealth -= 10;
+      this.monsterTurn();
+    }else if(this.player.character?.skill_name == 'Fireball'){
+      this.combatLog.push(this.username+" cast a fireball");
+      sessionStorage.setItem("spellLeft","0");
+      this.playerTurn(40);
+    }else if(this.player.character?.skill_name == 'Precise shot'){
+      sessionStorage.setItem("spellLeft","0");      
+      this.combatLog.push(this.username+" focuses himselft to shoot precisely on "+ this.cardHolder.card_name);
+      this.playerTurn(this.playerDamage*2);
     }
   }
 }

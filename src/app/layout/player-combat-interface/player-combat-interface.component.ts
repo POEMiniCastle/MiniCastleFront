@@ -13,9 +13,9 @@ export class PlayerCombatInterfaceComponent {
     this.clicked.emit("attack");
   }
   defend(){
-    this.clicked.emit("defend");
+    this.clicked.emit("skill");
   }
   flee(){
-    this.clicked.emit("KYS");
+    this.clicked.emit("flee");
   }
 }
