@@ -4,7 +4,7 @@
     border-radius: 10px;
     padding: 10px;
     margin: 10px;
-    width: 60%;
+    width: 100%;
 
 }
 
@@ -22,24 +22,19 @@
     align-items: flex-start;
     padding: 10px;
     margin: 10px;
-
 }
 
 
 .row {
     padding: 10px;
     margin: 10px;
-    
-
 }
 
 .cards {
     padding: 10px;
     margin: 10px;
-    
-
-
 }
+
 select{
     background-color: lightgray; 
     padding: 10px;
@@ -56,7 +51,7 @@ input {
    
 }
 
-.description{
+#description{
     line-height: 100px;
     text-align: left;
   }
