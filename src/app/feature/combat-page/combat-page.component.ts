@@ -12,6 +12,7 @@ import { CardService } from "src/app/services/card/card.service";
 })
 export class CombatPageComponent {
   combatLog: Array<string> = [];
+  encounterFinished: boolean = false;
 
   cardHolder!: Card;
   flip: string = "active";
@@ -26,11 +27,14 @@ export class CombatPageComponent {
   playerDamage!: number;
   playerHealth!: number;
   playerArmor!: number;
+  playerXp!: number;
+  playerLevel!: number;
   spellLeft!: number;
 
   monster?: Monster;
   monsterDamage!: number;
   monsterHealth!: number;
+  monsterXp!: number;
   calculatedDamage: number = 0;
 
   trap!: Trap;
@@ -72,6 +76,8 @@ export class CombatPageComponent {
     this.playerDamage = this.player.character!.base_damage;
     this.playerHealth = this.player.character!.base_hp;
     this.playerArmor = this.player.character!.base_armor;
+    this.playerLevel = this.player.character!.level;
+    this.playerXp = this.player.character!.xp;
   }
 
   getMonsterStats() {
@@ -80,6 +86,9 @@ export class CombatPageComponent {
         this.monster = monsters;
         this.monsterDamage = this.monster.damage;
         this.monsterHealth = this.monster.hp;
+        
+        this.monsterXp = this.monster.xp_reward;
+        console.log(this.monsterXp)
       },
     });
   }
@@ -119,7 +128,7 @@ export class CombatPageComponent {
       this.combatLog.push(this.cardHolder.card_name+" deals "+this.calculatedDamage+" damage to "+this.username+".")
       this.playerHealth -= this.monsterDamage - Math.round(this.playerArmor * 0.1);
     }else if (this.calculatedDamage <= 0){
-      this.combatLog.push(this.cardHolder.card_name+" try to hit "+this.username+" but his armor is too strong (GIT GUD).")
+      this.combatLog.push(this.cardHolder.card_name+" try to hit "+this.username+" but he misses.")
     }
     if (this.playerHealth <= 0) {
       this.result = "YOU HAVE BEEN SUNDERED BY A "+this.cardHolder.card_name.toUpperCase()+" GIT GUD KIDDO";
@@ -151,8 +160,14 @@ export class CombatPageComponent {
 
   displayMatchResult(matchResult: string) {
     this.overBlurVar = 'blur(8px)';
+    this.encounterFinished = true;
     if (matchResult == 'victory') {
       this.player.character!.base_hp = this.playerHealth;
+      if( this.cardHolder.card_type == 'Monster'){
+        this.player.character!.xp = this.playerXp+this.monsterXp;
+        this.shouldPlayerLevelUp();
+        this.player.character!.level = this.playerLevel;
+      }
       localStorage.setItem('player', JSON.stringify(this.player));
       this.visibilityVictoryVar = 'visible';
       this.opacityVar=100;
@@ -165,20 +180,33 @@ export class CombatPageComponent {
   skill(){
     if(sessionStorage.getItem("spellLeft") == "0"){
       this.combatLog.push("You don't have any spell left.")
-    }else if(this.player.character?.skill_name == 'Going berserk'){
-      this.combatLog.push(this.username+" sacrifices health to gain damage");
+    }else if(this.player.character?.skill_name == 'Rage'){
+
       sessionStorage.setItem("spellLeft","0");
-      this.playerDamage += 5;
-      this.playerHealth -= 10;
+      let addedDamage = this.getRandom(0,9)
+      this.combatLog.push(this.username+" enters a state of absolute rage adding "+addedDamage+" to your attack.");
+      this.playerDamage += addedDamage;
       this.monsterTurn();
     }else if(this.player.character?.skill_name == 'Fireball'){
       this.combatLog.push(this.username+" cast a fireball");
       sessionStorage.setItem("spellLeft","0");
-      this.playerTurn(40);
+      this.playerTurn(this.getRandom(2,(this.playerDamage*2)+1)+10);
     }else if(this.player.character?.skill_name == 'Precise shot'){
       sessionStorage.setItem("spellLeft","0");      
       this.combatLog.push(this.username+" focuses himselft to shoot precisely on "+ this.cardHolder.card_name);
       this.playerTurn(this.playerDamage*2);
+    }
+  }
+
+  shouldPlayerLevelUp(){
+    let xpCap = this.playerLevel*150;
+    this.combatLog.push("You gained "+this.monsterXp);
+    this.playerXp += this.monsterXp;
+    this.combatLog.push("Current xp : "+this.playerXp+" / "+xpCap);
+    if (this.playerXp >= xpCap){
+      this.playerXp -= xpCap;
+      this.playerLevel++;
+      this.combatLog.push("You leveled up. You're now level"+this.playerLevel);
     }
   }
 }

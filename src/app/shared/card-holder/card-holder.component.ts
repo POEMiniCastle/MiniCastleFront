@@ -19,7 +19,7 @@ export class CardHolderComponent {
 
   ngOnInit():void{
       this.loadComponent();   
-      console.log(this.monsterHealth)
+      //console.log(this.monsterHealth)
   }
 
   loadComponent(){
