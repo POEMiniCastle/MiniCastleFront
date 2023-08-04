@@ -50,9 +50,9 @@ a{
     margin-top: -5%;
     position: absolute;
     z-index: 5;
-    opacity: var(--isOpaq, 0);
+
     visibility: var(--isHidden, hidden);
-    transition-delay: 0.2s;
+    transition-delay: 0s;
     transition-property: all;
     transition-timing-function: ease-in;
     transition-duration: 0.22s;

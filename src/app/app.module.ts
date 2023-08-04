@@ -14,12 +14,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './layout/header/header.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list'
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapComponent } from './feature/map/map.component';
 import { RegistrationFormComponent } from './feature/registration-form/registration-form.component';
 import { HomeComponent } from './feature/home/home.component';
@@ -85,7 +85,8 @@ import { CardHeroesComponent } from './shared/card-heroes/card-heroes.component'
     MatSlideToggleModule,
     NgbModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

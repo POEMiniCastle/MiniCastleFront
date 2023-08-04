@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, SimpleChange, SimpleChanges } from '@angular/core';
-import { NavBarService } from 'src/app/services/nav-bar.service';
 import { navData } from './navData';
 import { navBarData } from './navBarData';
+import { NavBarService } from 'src/app/services/navbar/nav-bar.service';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -29,8 +29,7 @@ export class NavbarComponent {
       this.navBar.getNavBarContent("http://localhost:8080/navBarAllContent")
       .subscribe({
         next: res =>{ 
-        this.navData = res,
-        console.log(this.navData);
+        this.navData = res
         }
       })
     } else {

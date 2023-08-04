@@ -5,45 +5,45 @@
     </div>
     <div class="right">
         <div class="form-container">
-            <form>
+            <form [formGroup] = "cardForm">
                 <div class="cards">
                     <h2>Card Creation</h2>
-                    <select name="cards" id="card-select">
+                    <select name="cards" id="card-select" formControlName="card_Type">
                         <option value="">--Choose a Type--</option>
-                        <option value="monster">Monster</option>
-                        <option value="treasure">Treasure</option>
-                        <option value="trap">Trap</option>
+                        <option value="Monster">Monster</option>
+                        <option value="Treasure">Treasure</option>
+                        <option value="Trap">Trap</option>
                     </select>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="text" placeholder="Name" id="name">
+                        <input type="text" placeholder="Name" id="name" formControlName="card_Name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <input type="text" placeholder="Damage" id="damage"></div>
+                        <input type="text" placeholder="Damage" id="damage" formControlName="damage"></div>
                     <div class="col-md-3">
-                        <input type="text" placeholder="HP" id="hp">
+                        <input type="text" placeholder="HP" id="hp" formControlName="hp">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" placeholder="Score Value" id="score-value">
+                        <input type="text" placeholder="Score Value" id="score-value" formControlName="skillCheck">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" placeholder="XP_reward" id="xp-reward">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="text" placeholder="Description" id="description">
+                        <input type="text" placeholder="XP_reward" id="xp-reward" formControlName="xp_Reward">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="text" placeholder="Card_image_path" id="card-image-path">
+                        <input type="text" placeholder="Description" id="description" formControlName="card_Description">
                     </div>
                 </div>
-                <button class="btn btn-invoke">Invoke</button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" placeholder="Card_image_path" id="card-image-path" formControlName="card_ImagePath">
+                    </div>
+                </div>
+                <button class="btn btn-invoke" (click)="summoner()">Summon</button>
             </form>
         </div>
     </div>

@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { navData } from '../layout/navbar/navData';
 import { Observable, map } from 'rxjs';
-import { navBarData } from '../layout/navbar/navBarData';
+import { navBarData } from 'src/app/layout/navbar/navBarData';
 
 @Injectable({
   providedIn: 'root'
