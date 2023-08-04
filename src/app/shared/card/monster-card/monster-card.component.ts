@@ -37,7 +37,7 @@ export class MonsterCardComponent {
       this.getMonsterInfo(this.card.id);
       if(this.monsterCard)
         this.monsterHealth = this.monsterCard?.hp;
-        console.log(this.monsterHealth)
+        //console.log(this.monsterHealth)
     }
   }
 

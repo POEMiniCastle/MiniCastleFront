@@ -51,6 +51,8 @@ export class ClassCarouselComponent {
     // On ajoute les stats de base de la classe choisi par le joueur dans le stockage de session
     this.player = JSON.parse(localStorage.getItem("player") as string);
     this.player.character = this.classesTable[id-1];
+    this.player.character.level = 1;
+    this.player.character.xp = 0;
     localStorage.setItem("player", JSON.stringify(this.player));
 
     // Redirection vers la map

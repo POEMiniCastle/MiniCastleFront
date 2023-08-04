@@ -10,7 +10,7 @@
 
     <card-heroes id="hero" [heroesHealth]="playerHealth"></card-heroes>
     <footer>
-        <app-player-combat-interface (clicked)="determinePlayerMove($event)"></app-player-combat-interface>
+        <app-player-combat-interface (clicked)="determinePlayerMove($event)" [disabled]="encounterFinished" [skillName]="skillName"></app-player-combat-interface>
     </footer>
 </body>
 
