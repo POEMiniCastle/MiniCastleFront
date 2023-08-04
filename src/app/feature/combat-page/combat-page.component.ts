@@ -4,6 +4,7 @@ import { Card } from "src/app/core/entities/card";
 import { Monster } from "src/app/core/entities/monster";
 import { Trap } from "src/app/core/entities/trap";
 import { CardService } from "src/app/services/card/card.service";
+import { ClassService } from "src/app/services/class/class.service";
 
 @Component({
   selector: "app-combat-page",
@@ -29,6 +30,7 @@ export class CombatPageComponent {
   playerArmor!: number;
   playerXp!: number;
   playerLevel!: number;
+  skillName!: string;
   spellLeft!: number;
 
   monster?: Monster;
@@ -41,7 +43,7 @@ export class CombatPageComponent {
   trapSkillCheck!: number;
   trapDamage!: number;
 
-  constructor(private cardService: CardService) {}
+  constructor(private cardService: CardService,private classService: ClassService) {}
 
   ngOnInit() {
     this.getInfoCard();   
@@ -78,6 +80,7 @@ export class CombatPageComponent {
     this.playerArmor = this.player.character!.base_armor;
     this.playerLevel = this.player.character!.level;
     this.playerXp = this.player.character!.xp;
+    this.skillName = this.player.character!.skill_name;
   }
 
   getMonsterStats() {
@@ -99,6 +102,9 @@ export class CombatPageComponent {
   }
 
   determinePlayerMove(action: string) {
+    if(this.combatLog.length>=9){
+      this.combatLog = this.combatLog.slice(3,8);
+    }
     if (action == "attack") {
      this.playerTurn(this.playerDamage); 
     } else if (action == "skill") {
@@ -131,7 +137,7 @@ export class CombatPageComponent {
       this.combatLog.push(this.cardHolder.card_name+" try to hit "+this.username+" but he misses.")
     }
     if (this.playerHealth <= 0) {
-      this.result = "YOU HAVE BEEN SUNDERED BY A "+this.cardHolder.card_name.toUpperCase()+" GIT GUD KIDDO";
+      this.result = "YOU HAVE BEEN SUNDERED BY A "+this.cardHolder.card_name.toUpperCase();
       this.displayMatchResult("defeat");
     }
   }
@@ -183,7 +189,7 @@ export class CombatPageComponent {
     }else if(this.player.character?.skill_name == 'Rage'){
 
       sessionStorage.setItem("spellLeft","0");
-      let addedDamage = this.getRandom(0,9)
+      let addedDamage = Math.round(this.getRandom(0,9));
       this.combatLog.push(this.username+" enters a state of absolute rage adding "+addedDamage+" to your attack.");
       this.playerDamage += addedDamage;
       this.monsterTurn();
@@ -199,6 +205,9 @@ export class CombatPageComponent {
   }
 
   shouldPlayerLevelUp(){
+    if(this.combatLog.length>=9){
+    this.combatLog = this.combatLog.slice(3,8)
+  }
     let xpCap = this.playerLevel*150;
     this.combatLog.push("You gained "+this.monsterXp);
     this.playerXp += this.monsterXp;
@@ -207,6 +216,7 @@ export class CombatPageComponent {
       this.playerXp -= xpCap;
       this.playerLevel++;
       this.combatLog.push("You leveled up. You're now level"+this.playerLevel);
+      this.classService.getClassData(this.player.character!.id).subscribe(classStats => this.playerHealth = classStats.base_hp);
     }
   }
 }

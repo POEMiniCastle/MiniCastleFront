@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class PlayerCombatInterfaceComponent {
   @Output() clicked = new EventEmitter<string>();
   @Input() disabled: boolean = false;
+  @Input() skillName!: string;
 
   attack() {
     if (!this.disabled) {

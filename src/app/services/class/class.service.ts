@@ -19,4 +19,11 @@ import { Class } from 'src/app/core/entities/class';
         map((res: Class[]) =>  res)
       )
     }
+
+    getClassData(id:number): Observable<Class> {
+      return this.httpClient.get<Class>(this.url + "/" + id)
+      .pipe (
+        map((res : Class) => (res))
+      ) 
+    }
 }
