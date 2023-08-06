@@ -16,56 +16,51 @@ import { InsertCardService } from 'src/app/services/insertCard/insert-card.servi
 
 export class CreationCardComponent {
   cardForm:FormGroup;
-  card_Type:string = "";
-  card_Name:string = "";
+  cardType:string = "";
+  cardName:string = "";
   damage:number = 0;
   hp:number = 0;
   skillCheck:number = 0;
-  xp_Reward:number = 0;
-  card_Description:string = "";
-  card_ImagePath:string = "";
+  xpReward:number = 0;
+  cardDescription:string = "";
+  cardImagePath:string = "";
   
-  cardTemp!:cardCreation;
-
   constructor(private fb:FormBuilder, private insertServices:InsertCardService){
     this.cardForm = this.fb.group({
-      card_Type:'',
-      card_Name:'',
+      cardType:'',
+      cardName:'',
       damage:'',
       hp:'',
       skillCheck:'',
-      xp_Reward:'',
-      card_Description:'',
-      card_ImagePath:''
+      xpReward:'',
+      cardDescription:'',
+      cardImagePath:''
     })
   }
 
   summoner(){
-    this.setValue();
-    this.instanciateCard();
-    this.insertServices.insert(this.cardTemp);
+    this.insertServices.insert(this.setValue())
+    .subscribe({
+      next: (response: cardCreation) => {
+        console.log(response);
+      },
+      error: (err) => console.error(err)
+    })
   }
 
   setValue(){
-    this.card_Type = this.cardForm.get('card_Type')?.value;
-    this.card_Name = this.cardForm.get('card_Name')?.value;
-    this.damage = this.cardForm.get('damage')?.value;
-    this.hp = this.cardForm.get('hp')?.value;
-    this.skillCheck = this.cardForm.get('skillCheck')?.value;
-    this.xp_Reward = this.cardForm.get('xp_Reward')?.value;
-    this.card_Description = this.cardForm.get('card_Description')?.value;
-    this.card_ImagePath = this.cardForm.get('card_ImagePath')?.value;
+    this.cardType = this.cardForm.value.cardType;
+    this.cardName = this.cardForm.value.cardName;
+    this.damage = this.cardForm.value.damage;
+    this.hp = this.cardForm.value.hp;
+    this.skillCheck = this.cardForm.value.skillCheck;
+    this.xpReward = this.cardForm.value.xpReward;
+    this.cardDescription = this.cardForm.value.cardDescription;
+    this.cardImagePath = this.cardForm.value.cardImagePath;
+    return this.instanciateCard();
   }
 
   instanciateCard(){
-    this.cardTemp.card.card_name = this.card_Name;
-    this.cardTemp.card.description = this.card_Description;
-    this.cardTemp.card.card_image_path = this.card_ImagePath;
-    this.cardTemp.card.score_value = this.skillCheck;
-    this.cardTemp.card.card_type = this.card_Type;
-    this.cardTemp.monster.damage = this.damage;
-    this.cardTemp.monster.hp = this.hp;
-    this.cardTemp.monster.xp_reward = this.xp_Reward;
-    return this.cardTemp;
+    return new cardCreation(new Card(this.cardImagePath, this.cardName, this.cardType, this.cardDescription, this.skillCheck), new Monster(this.damage, this.hp, this.xpReward))
   }
 }

@@ -1,9 +1,15 @@
 import { Card } from "./card";
 
-export interface Monster {
-    id: number;
+export class Monster {
+    id: number = 0;
     damage: number;
     hp: number;
-    xp_reward:number;
-    card : Card;
+    xpReward:number;
+    card! : Card;
+
+    constructor(damage:number, hp:number, xpReward:number){
+        this.damage = damage;
+        this.hp = hp;
+        this.xpReward = xpReward;
+    }
 }

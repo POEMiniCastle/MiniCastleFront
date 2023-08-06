@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.scss']
 })
+
 export class RegistrationFormComponent {
   form: UntypedFormGroup;
   

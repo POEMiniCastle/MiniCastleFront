@@ -90,7 +90,7 @@ export class CombatPageComponent {
         this.monsterDamage = this.monster.damage;
         this.monsterHealth = this.monster.hp;
         
-        this.monsterXp = this.monster.xp_reward;
+        this.monsterXp = this.monster.xpReward;
         console.log(this.monsterXp)
       },
     });
