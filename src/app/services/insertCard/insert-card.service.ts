@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Card } from 'src/app/core/entities/card';
-import { cardCreation } from 'src/app/core/entities/cardCreation';
-import { Monster } from 'src/app/core/entities/monster';
-import { MonsterCardComponent } from 'src/app/shared/card/monster-card/monster-card.component';
+import { monsterCreation } from 'src/app/core/entities/monsterCreation';
+import { trapCreation } from 'src/app/core/entities/trapCreation';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +12,11 @@ export class InsertCardService {
 
   constructor(private httpClient: HttpClient) { }
 
-  insert(card: cardCreation): Observable<cardCreation>{
-    return this.httpClient.post<cardCreation>(this.urlInsert, card);
+  insertMonster(card: monsterCreation): Observable<monsterCreation>{
+    return this.httpClient.post<monsterCreation>(this.urlInsert, card);
+  } 
+
+  insertTrap(card: trapCreation): Observable<trapCreation>{
+    return this.httpClient.post<trapCreation>(this.urlInsert, card);
   } 
 }

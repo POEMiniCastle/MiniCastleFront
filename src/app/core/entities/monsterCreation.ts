@@ -1,7 +1,8 @@
 import { Card } from "./card";
 import { Monster } from "./monster";
 
-export class cardCreation {
+
+export class monsterCreation {
     card:Card;
     monster: Monster
 
@@ -9,4 +10,5 @@ export class cardCreation {
         this.card = card;
         this.monster = monster;
     }
+
 }

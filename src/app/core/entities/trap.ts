@@ -1,7 +1,12 @@
 import { Card } from "./card";
 
-export interface Trap {
-    id: number;
+export class Trap {
+    id: number = 0;
     skillCheck: number;
     damage: number;
+
+    constructor(damage:number, skillCheck:number){
+        this.damage = damage;
+        this.skillCheck = skillCheck;
+    }
 }

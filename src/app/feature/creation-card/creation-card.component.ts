@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Card } from 'src/app/core/entities/card';
-import { cardCreation } from 'src/app/core/entities/cardCreation';
+import { monsterCreation } from 'src/app/core/entities/monsterCreation';
 import { Monster } from 'src/app/core/entities/monster';
 import { Trap } from 'src/app/core/entities/trap';
-import { CardService } from 'src/app/services/card/card.service';
 import { InsertCardService } from 'src/app/services/insertCard/insert-card.service';
+import { trapCreation } from 'src/app/core/entities/trapCreation';
 
 
 @Component({
@@ -39,13 +39,28 @@ export class CreationCardComponent {
   }
 
   summoner(){
-    this.insertServices.insert(this.setValue())
-    .subscribe({
-      next: (response: cardCreation) => {
-        console.log(response);
-      },
-      error: (err) => console.error(err)
-    })
+    this.setValue();
+    if(this.cardType === 'Monster'){
+      this.insertServices.insertMonster(this.instanciateMonsterCard())
+      .subscribe({
+        next: (response: monsterCreation) => {
+          alert(response.card.card_name + " has been invoked !");
+          this.cardForm.reset();
+        },
+        error: (err) => console.error(err)
+      })
+    } else if (this.cardType === 'Trap'){
+      this.insertServices.insertTrap(this.instanciateTrapCard())
+      .subscribe({
+        next: (response: trapCreation) => {
+          alert(response.card.card_name + " has been invoked !");
+          this.cardForm.reset();
+        },
+        error: (err) => console.error(err)
+      })
+    } else{
+      console.error("Bad input");
+    }
   }
 
   setValue(){
@@ -57,10 +72,13 @@ export class CreationCardComponent {
     this.xpReward = this.cardForm.value.xpReward;
     this.cardDescription = this.cardForm.value.cardDescription;
     this.cardImagePath = this.cardForm.value.cardImagePath;
-    return this.instanciateCard();
   }
 
-  instanciateCard(){
-    return new cardCreation(new Card(this.cardImagePath, this.cardName, this.cardType, this.cardDescription, this.skillCheck), new Monster(this.damage, this.hp, this.xpReward))
+  instanciateMonsterCard(){
+    return new monsterCreation(new Card(this.cardImagePath, this.cardName, this.cardType, this.cardDescription, this.skillCheck), new Monster(this.damage, this.hp, this.xpReward));
+  }
+
+  instanciateTrapCard(){
+    return new trapCreation(new Card(this.cardImagePath, this.cardName, this.cardType, this.cardDescription, this.skillCheck), new Trap(this.damage, this.skillCheck));
   }
 }
