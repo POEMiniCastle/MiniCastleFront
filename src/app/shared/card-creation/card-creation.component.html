@@ -1,0 +1,21 @@
+<div class="template-cardInfo" >
+    <div class="hide">
+        <div class="hp-damage" role="group">
+            <span id="hp">{{ cardInfo?.value.hp || 'X'}}</span>
+
+            <span id="damage">{{ cardInfo?.value.damage || 'X'}}</span>
+        </div>
+
+        <div>
+            <img src="assets/enemy/placeholder.webp" id="image">
+        </div>
+
+        <div class="descriptionInfo">
+            <h5 id="cardNameInfo">{{ cardInfo?.value.cardName || 'Card Name' }}</h5>
+            <p id="cardDescriptionInfo">
+                {{ cardInfo?.value.cardDescription || 'A small description about the Monster' }}
+            </p>
+        </div>
+        <span class="material-symbols-outlined">refresh</span>
+    </div>
+</div>

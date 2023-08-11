@@ -1,0 +1,50 @@
+.template-cardInfo {
+    border-radius: 30px 30px 30px 30px  !important;
+    min-width: 5vw;
+    max-width: 13vw;
+    min-height: 40vh !important;
+    max-height: 30vh !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    // min-width: 20vw !important;
+  }
+
+.descriptionInfo{
+    margin-left: 8%;
+    width: 80%;
+}
+
+#hp{
+    background-color: crimson;
+    font-size: x-large;
+}
+
+#damage{
+    background-color: crimson;
+    font-size: x-large;
+}
+
+#cardDescriptionInfo{
+    font-size: large;
+    font-weight: bold;
+}
+
+.hide{
+    width: auto;
+    height: 100%;
+}
+
+.material-symbols-outlined{
+    display: flex;
+    margin-top: 50px;
+    color: crimson;
+}
+
+#cardNameInfo{
+    font-size: larger;
+}
+
+#image{
+    width: 75%;
+    display: flex;
+    margin-left: 13%;
+}

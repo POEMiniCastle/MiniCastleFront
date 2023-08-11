@@ -41,6 +41,7 @@ import { ConnexionFormComponent } from './feature/connexion-form/connexion-form.
 import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
 import { CombatLogComponent } from './layout/combat-log/combat-log.component';
 import { CardHeroesComponent } from './shared/card-heroes/card-heroes.component';
+import { CardCreationComponent } from './shared/card-creation/card-creation.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { CardHeroesComponent } from './shared/card-heroes/card-heroes.component'
     ConnexionFormComponent,
     PlayMenuComponent,
     CombatLogComponent,
-    CardHeroesComponent
+    CardHeroesComponent,
+    CardCreationComponent
   ],
   imports: [
     BrowserModule,

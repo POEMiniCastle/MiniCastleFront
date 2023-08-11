@@ -24,6 +24,7 @@ export class CreationCardComponent {
   xpReward:number = 0;
   cardDescription:string = "";
   cardImagePath:string = "";
+  cardInfo: any;
   
   constructor(private fb:FormBuilder, private insertServices:InsertCardService){
     this.cardForm = this.fb.group({
@@ -47,7 +48,7 @@ export class CreationCardComponent {
           alert(response.card.card_name + " has been invoked !");
           this.cardForm.reset();
         },
-        error: (err) => console.error(err)
+        error: (err) => alert("Wrong input !")
       })
     } else if (this.cardType === 'Trap'){
       this.insertServices.insertTrap(this.instanciateTrapCard())
@@ -56,7 +57,7 @@ export class CreationCardComponent {
           alert(response.card.card_name + " has been invoked !");
           this.cardForm.reset();
         },
-        error: (err) => console.error(err)
+        error: (err) => alert("Wrong input !")
       })
     } else{
       console.error("Bad input");
