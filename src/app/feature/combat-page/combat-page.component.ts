@@ -116,7 +116,7 @@ export class CombatPageComponent {
   }
 
   playerTurn(damage:number){
-    this.combatLog.push(this.username+" deals "+damage+" damage to "+this.cardHolder.card_name+".");
+    this.combatLog.push(this.username+" deals " +damage+" damage to "+this.cardHolder.card_name+".");
     this.monsterHealth -= damage;
     this.combatLog.push(this.cardHolder.card_name+" has "+this.monsterHealth+" health points left.");
     if (this.monsterHealth <= 0) {
