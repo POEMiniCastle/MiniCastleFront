@@ -1,9 +1,10 @@
 
 <img src="assets/combat/0.webp" [style.--isHidden]="visibilityVar" id="imageRender" (click) = "redirect()"/>
+
+<play-sheet></play-sheet>
+
 <div class="combatPage" [style.--overBlur]="overBlurVar">
-  <!-- <a href="/combat" [style.--isHidden]="visibilityVar" [style.--isOpaq]="opacityVar">COMBAT</a> -->
-   
-  <div class="container col-6 d-flex flex-row flex-wrap gap-2" >
+  <div class="container col-6 d-flex flex-row flex-wrap gap-1" >
     <div *ngFor="let card of cardTable, let index = index" class="col-3">
       <app-card [card]= cardTable[index] [deActivate]="isActiveMap.get(index)" (flipped)="changeState($event, index,1)" id=index></app-card>
     </div>

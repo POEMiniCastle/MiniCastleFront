@@ -42,6 +42,7 @@ import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
 import { CombatLogComponent } from './layout/combat-log/combat-log.component';
 import { CardHeroesComponent } from './shared/card-heroes/card-heroes.component';
 import { CardCreationComponent } from './shared/card-creation/card-creation.component';
+import { PlaySheetComponent } from './layout/play-sheet/play-sheet.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { CardCreationComponent } from './shared/card-creation/card-creation.comp
     PlayMenuComponent,
     CombatLogComponent,
     CardHeroesComponent,
-    CardCreationComponent
+    CardCreationComponent,
+    PlaySheetComponent
   ],
   imports: [
     BrowserModule,
