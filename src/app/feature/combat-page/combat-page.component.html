@@ -1,6 +1,6 @@
 <body [style.--overBlur]="overBlurVar">
-        <a href="/play" [style.--isHidden]="visibilityVictoryVar" [style.--isOpaq]="opacityVar" id="victory">{{ result }}</a>
-        <a href="/play-menu" [style.--isHidden]="visibilityDefeatVar" [style.--isOpaq]="opacityVar" id="defeat">{{ result }}</a>
+        <img src="assets/victory/0.webp"  [style.--isHidden]="visibilityVictoryVar" [style.--isOpaq]="opacityVar" id="victory"/>
+        <img src="assets/defeat/0.webp"  [style.--isHidden]="visibilityDefeatVar" [style.--isOpaq]="opacityVar" id="defeat"/>
         
     <app-combat-log [combatLog]="combatLog"></app-combat-log>
 

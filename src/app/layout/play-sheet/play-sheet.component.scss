@@ -1,6 +1,7 @@
 h2{
     display: flex;
     justify-content: center;
+    margin-top: 12%;
 }
 
 #sheet{
@@ -16,6 +17,7 @@ li{
     font-size: medium;
 }
 
+// #region @MediaScreen
 @media (width < 1800px) {
     #sheet{
         padding-top: 35%;
@@ -28,8 +30,11 @@ li{
     p{
         font-size: medium;
     }
-}
 
+    h2{
+        margin-top: 10%;
+    }
+}
 
 @media (width < 1400px) {
     #sheet{
@@ -42,6 +47,11 @@ li{
 
     p{
         font-size: smaller;
+    }
+
+    h2{
+        font-size: medium;   
+        margin-top: 18%;
     }
 }
 
@@ -57,11 +67,21 @@ li{
     p{
         font-size: smaller;
     }
+
+    h2{
+        font-size: medium;     
+    }
+
+    span{
+        font-size: smaller;
+    }
 }
 
 
-@media (width < 1000px) {
+@media (width < 1100px) {
     #sheet{
         display: none;
     }  
 }
+
+// #endregion

@@ -20,12 +20,10 @@
 #victory{
     position: absolute;
     z-index: 5;
-    text-decoration: none;
     text-align: center;
-    margin-left: 25%;
-    margin-top: 15%;
-    font-size: calc(100px + 0.390625vw);;
-    width: 50%;
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 75%;
     visibility: var(--isHidden, hidden);
     opacity: var(--isOpaq, 0);
     transition-delay: 0.5s;
@@ -37,11 +35,8 @@
 #defeat{
     position: absolute;
     z-index: 5;
-    text-decoration: none;
-    text-align: center;
     margin-left: 25%;
     margin-top: 5%;
-    font-size: calc(100px + 0.390625vw);;
     width: 50%;
     visibility: var(--isHidden, hidden);
     opacity: var(--isOpaq, 0);
@@ -84,6 +79,7 @@ app-combat-log{
     
 }
 
+// #region @MediaScreen
 @media (width < 2000px) {  
     #hero{
         margin-left: 25% ;
@@ -101,3 +97,5 @@ app-combat-log{
         margin-left: 0% ;
     }
 }
+
+// #endregion

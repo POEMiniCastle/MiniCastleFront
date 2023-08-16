@@ -123,7 +123,6 @@ export class MapComponent {
         this.currentImageIndex++;
       }else{
         this.currentImageIndex = 25;
-        delay(1000);
         window.location.href="/combat";
       }
     }
@@ -133,9 +132,6 @@ export class MapComponent {
     this.animate()
   }
 
-  redirect(){
-    window.location.href="/combat";
-  }
 }
 
 

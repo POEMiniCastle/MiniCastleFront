@@ -1,4 +1,5 @@
 import { Component, Input  } from "@angular/core";
+import { timer } from "rxjs";
 import { Player } from "src/app/core/entities/Player";
 import { Card } from "src/app/core/entities/card";
 import { Monster } from "src/app/core/entities/monster";
@@ -12,9 +13,11 @@ import { ClassService } from "src/app/services/class/class.service";
   styleUrls: ["./combat-page.component.scss"],
 })
 export class CombatPageComponent {
+  
   combatLog: Array<string> = [];
   encounterFinished: boolean = false;
 
+// #region AllVariables
   cardHolder!: Card;
   flip: string = "active";
   overBlurVar!: string;
@@ -22,6 +25,7 @@ export class CombatPageComponent {
   visibilityDefeatVar!: string;
   result!: string;
   opacityVar!:number;
+  currentImageIndex:number = 0;
 
   player!: Player;
   username!: string;
@@ -42,6 +46,7 @@ export class CombatPageComponent {
   trap!: Trap;
   trapSkillCheck!: number;
   trapDamage!: number;
+// #endregion
 
   constructor(private cardService: CardService,private classService: ClassService) {}
 
@@ -49,6 +54,7 @@ export class CombatPageComponent {
     this.getInfoCard();   
   }
 
+  // #region GettersInformations
   getInfoCard() {
     this.cardHolder = JSON.parse(sessionStorage.getItem("event") as string);
 
@@ -101,6 +107,13 @@ export class CombatPageComponent {
     this.getMonsterStats();
   }
 
+  getRandom(min: number, max: number) {
+    let res = Math.random() * (max - min) + min;
+    return res;
+  }
+  // #endregion
+
+  // #region Combat/Trap Logic
   determinePlayerMove(action: string) {
     if(this.combatLog.length>=9){
       this.combatLog = this.combatLog.slice(3,8);
@@ -159,11 +172,6 @@ export class CombatPageComponent {
     }
   }
 
-  getRandom(min: number, max: number) {
-    let res = Math.random() * (max - min) + min;
-    return res;
-  }
-
   displayMatchResult(matchResult: string) {
     this.overBlurVar = 'blur(8px)';
     this.encounterFinished = true;
@@ -177,12 +185,17 @@ export class CombatPageComponent {
       localStorage.setItem('player', JSON.stringify(this.player));
       this.visibilityVictoryVar = 'visible';
       this.opacityVar=100;
+      this.startAnimate('victory', 'play');
+
     } else if (matchResult == 'defeat') {
       sessionStorage.clear();
       this.visibilityDefeatVar = 'visible';
       this.opacityVar=100;
+      this.startAnimate('defeat', 'play-menu');
+
     }
   }
+
   skill(){
     if(sessionStorage.getItem("spellLeft") == "0"){
       this.combatLog.push("You don't have any spell left.")
@@ -219,4 +232,45 @@ export class CombatPageComponent {
       this.classService.getClassData(this.player.character!.id).subscribe(classStats => this.playerHealth = classStats.base_hp);
     }
   }
+
+  // #endregion
+
+  // #region Animation
+  getCurrentIndexImage(value:number){
+    if(value < 10){
+      return 0;
+    } else {
+      return value;
+    }
+  }
+
+  animate(result : string){
+    requestAnimationFrame(()=> {
+      setTimeout(() => {
+        this.animate(result);
+      }, 1000/25);
+      
+    })
+    const ending = document.getElementById(result) as HTMLImageElement | null;
+    if(ending !=null){
+      ending!.src = 'assets/'+ result+ '/' + this.getCurrentIndexImage(this.currentImageIndex) + '.webp';
+      if(this.currentImageIndex < 24){
+        this.currentImageIndex++;
+      }else{
+        this.currentImageIndex = 24;
+      }
+    }
+  }
+
+  startAnimate(result : string, route:string){
+    this.animate(result);
+    this.timerRedirect(route);
+  }
+
+  timerRedirect(route :string){
+    const source = timer(3000);
+    const subscribe = source.subscribe(res => window.location.href="/" + route);
+  }
+
+  // #endregion
 }

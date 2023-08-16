@@ -1,12 +1,4 @@
 // #region @MediaScreen
-// Using for the card & font responsivity 
-// @media (width > 1600px) {
-//     .template-card {
-//         border-radius: 30px 30px 30px 30px  !important;
-//         width: 15vw;
-//         height: 33vh;
-//   }
-// }
 @media (width > 1400px) {
     .template-card {
         border-radius: 30px 30px 30px 30px  !important;
@@ -43,7 +35,7 @@
   
 .template-card {
     border-radius: 30px 30px 30px 30px  !important;
-    min-width: 5vw;
+    min-width: 10vw;
     min-height: 30vh !important;
     max-height: 30vh !important;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
