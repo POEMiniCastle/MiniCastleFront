@@ -4,7 +4,7 @@ h2{
 }
 
 #sheet{
-    padding-top: 20%;
+    padding-top: 26%;
 }
 
 p{
@@ -14,4 +14,54 @@ p{
 
 li{
     font-size: medium;
+}
+
+@media (width < 1800px) {
+    #sheet{
+        padding-top: 35%;
+    }  
+
+    li{
+        font-size: medium;
+    } 
+
+    p{
+        font-size: medium;
+    }
+}
+
+
+@media (width < 1400px) {
+    #sheet{
+        padding-top: 45%;
+    }  
+
+    li{
+        font-size: smaller;
+    } 
+
+    p{
+        font-size: smaller;
+    }
+}
+
+@media (width < 1200px) {
+    #sheet{
+        padding-top: 35%;
+    }  
+
+    li{
+        font-size: smaller;
+    } 
+
+    p{
+        font-size: smaller;
+    }
+}
+
+
+@media (width < 1000px) {
+    #sheet{
+        display: none;
+    }  
 }

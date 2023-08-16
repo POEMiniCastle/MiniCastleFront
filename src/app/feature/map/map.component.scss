@@ -1,14 +1,14 @@
+@media (width < 1000px) {
+    play-sheet{
+        display: none;
+    }  
+}
+
 .container{
     margin-top: 2%;
     justify-content: center;    
 }
 
-@media (width > 1200px) {
-    .container{
-        width: 50%;
-        height:50%;
-    }  
-}
 
 a{
     font-family:'Roboto';
@@ -35,7 +35,6 @@ a{
     transition-property: all;
     transition-timing-function: ease-in;
     transition-duration: 0.3s;
-    
 }
 
 #test{

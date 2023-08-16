@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ViewContainerRef } from '@angular/core';
-import { Observable, concatMap, findIndex, timer } from 'rxjs';
+import { Observable, concatMap, delay, findIndex, timer } from 'rxjs';
 import { AdDirective } from 'src/app/ad.directive';
 import { Card } from 'src/app/core/entities/card';
 import { Monster } from 'src/app/core/entities/monster';
@@ -100,6 +100,7 @@ export class MapComponent {
       this.isActiveMap.set(i, true);
     }
   }
+
   getCurrentIndexImage(value:number){
     if(value < 10){
       return 0;
@@ -122,6 +123,8 @@ export class MapComponent {
         this.currentImageIndex++;
       }else{
         this.currentImageIndex = 25;
+        delay(1000);
+        window.location.href="/combat";
       }
     }
   }
