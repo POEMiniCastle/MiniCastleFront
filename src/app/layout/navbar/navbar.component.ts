@@ -44,9 +44,6 @@ export class NavbarComponent {
   }
 
   ngOnLoad(){
-    if(localStorage.getItem("player") !== null ){
-      console.log("DOug");
-    }
   }
 
   toggleCollapse(): void{
@@ -57,11 +54,5 @@ export class NavbarComponent {
   closeSidenav(): void{
     this.collapsed = false;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
-  }
-
-  checkingConnexion(){
-    if(localStorage.getItem("player") !== null ){
-     
-    }
   }
 }

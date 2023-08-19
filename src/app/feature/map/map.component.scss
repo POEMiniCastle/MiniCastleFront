@@ -3,24 +3,6 @@
     justify-content: center;    
 }
 
-a{
-    font-family:'Roboto';
-    position: absolute;
-    z-index: 5;
-    text-decoration: none;
-    opacity: var(--isOpaq, 0);
-    margin-top: 23%;
-    margin-left: 18%;
-    font-size: calc(20em + 0.390625vw);
-    width: 50%;
-    color: #931621;
-    visibility: var(--isHidden, hidden);
-    transition-delay: 1s;
-    transition-property: all;
-    transition-timing-function: ease-in;
-    transition-duration: 0.22s;
-}
-
 .combatPage{
     height: min-content;
     filter: var(--overBlur);
@@ -36,7 +18,6 @@ a{
     margin-top: 0%;
     position: absolute;
     z-index: 5;
-
     visibility: var(--isHidden, hidden);
     transition-delay: 0s;
     transition-property: all;
@@ -64,24 +45,48 @@ play-sheet:hover{
     transition-duration: 0.2s;
 }
 
+#floor{
+    position: absolute;
+    z-index: 0;
+    left: 20%;
+    bottom: 10%;
+    font-size: x-large;
+    font-family: 'Roboto';
+    font-weight: bolder;
+    font-style: oblique;
+}
+
 // #region @MediaScreen
+@media (width < 1200px) {
+    #floor{
+        left: 10%;
+    }
+}
 @media (width < 1000px) {
     play-sheet{
         display: none;
     }  
 
-    #imageRender{
+    #combat, #trap{
         width: 100%;
         margin-left: 2%;
         margin-top: 15% !important;
     }
+
+    #floor{
+        left: 5%;
+    }
 }
 
 @media (width < 600px) {
-    #imageRender{
+    #combat, #trap{
         width: 150%;
         margin-left: -20%;
         margin-top: 55% !important;
+    }
+
+    #floor{
+        left: 1%;
     }
 }
 

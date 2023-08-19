@@ -30,7 +30,7 @@ export class ConnexionFormComponent {
     .subscribe({
       next: (response: Player) => {
         localStorage.setItem("player", JSON.stringify(response));
-        this.router.navigate(['/play-menu']);
+        window.location.href='/play-menu';
       },
       error: (err) => console.error(err)
     });

@@ -268,7 +268,7 @@ export class CombatPageComponent {
   }
 
   timerRedirect(route :string){
-    const source = timer(3000);
+    const source = timer(3500);
     const subscribe = source.subscribe(res => window.location.href="/" + route);
   }
 

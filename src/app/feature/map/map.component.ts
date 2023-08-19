@@ -1,9 +1,7 @@
-import { Component, Input, ViewChild, ViewContainerRef } from '@angular/core';
-import { Observable, concatMap, delay, findIndex, timer } from 'rxjs';
-import { AdDirective } from 'src/app/ad.directive';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { Card } from 'src/app/core/entities/card';
-import { Monster } from 'src/app/core/entities/monster';
-import { CardComponent } from 'src/app/shared/card/card.component';
 import { CardService } from 'src/app/services/card/card.service';
 
 @Component({
@@ -13,7 +11,7 @@ import { CardService } from 'src/app/services/card/card.service';
 })
 
 export class MapComponent {
-
+//#region Variables
   cardTable: Card[] = [];
   isActiveMap:Map<number, boolean> = new Map();
   PositionMap:Map<number, number> = new Map();
@@ -22,11 +20,13 @@ export class MapComponent {
   opacityVar!:string;
   cardTemp!: Card;
   currentImageIndex:number = 0;
-  
+  nbFloor : number = 1;
+//#endregion  
 
-  constructor(private cardService: CardService){ }
+  constructor(private cardService: CardService, private router:Router){ }
 
   ngOnInit():void {
+    this.nbFloor =  1;
     this.getCards();
     this.createPosition();
     if(sessionStorage.getItem("event") != null){
@@ -34,6 +34,7 @@ export class MapComponent {
     }
   }
 
+//#region Map Logics
   getCards(){
     this.cardService.getCard()
       .subscribe(cards => {
@@ -63,6 +64,9 @@ export class MapComponent {
     } else {
       this.isActiveMap.set(index+1, false);
       this.isActiveMap.set(index+3, false); 
+    }
+    if(index == 8){
+      this.nbFloor = this.nbFloor + 1;
     }
   }
   
@@ -105,7 +109,9 @@ export class MapComponent {
       this.isActiveMap.set(i, true);
     }
   }
+//#endregion
 
+//#region Animation
   getCurrentIndexImage(value:number){
     if(value < 10){
       return 0;
@@ -124,11 +130,12 @@ export class MapComponent {
     const combat = document.getElementById(result) as HTMLImageElement | null;
     if(combat !=null){
       combat!.src = 'assets/'+result + '/' + this.getCurrentIndexImage(this.currentImageIndex) + '.webp';
-      if(this.currentImageIndex < 25){
+      if(this.currentImageIndex < 24){
         this.currentImageIndex++;
       }else{
-        this.currentImageIndex = 25;
-        window.location.href="/combat";
+        this.currentImageIndex = 24;
+        this.timerRedirect('combat');
+        
       }
     }
   }
@@ -136,5 +143,12 @@ export class MapComponent {
   startAnimate(result:string){
     this.animate(result);
   }
+
+  timerRedirect(route :string){
+    const source = timer(2000);
+    const subscribe = source.subscribe(res => window.location.href="/" + route);
+  }
+
+  //#endregion
 }
 

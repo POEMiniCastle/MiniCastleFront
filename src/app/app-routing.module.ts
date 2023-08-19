@@ -10,6 +10,7 @@ import { TestComponent } from './feature/test/test.component';
 import { CombatPageComponent } from './feature/combat-page/combat-page.component';
 import { ConnexionFormComponent } from './feature/connexion-form/connexion-form.component';
 import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
+import { DeconnexionComponent } from './layout/deconnexion/deconnexion.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'combat',
     component: CombatPageComponent
+  },
+  {
+    path: 'deconnexion',
+    component: DeconnexionComponent
   },
 
 
