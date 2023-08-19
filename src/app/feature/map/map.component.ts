@@ -50,6 +50,7 @@ export class MapComponent {
     sessionStorage.setItem("event", JSON.stringify(this.cardTable[index]));
     this.changeStateAfterChoose(index);
     if(blur!=0){
+      this.cardTemp = JSON.parse(sessionStorage.getItem("event") as string);
       this.getBlurry();
       this.disabledCard();
     }
@@ -68,8 +69,13 @@ export class MapComponent {
   getBlurry(){
     this.overBlurVar='blur(8px)';
     this.visibilityVar = 'visible';    
-    this.opacityVar = '100';    
-    this.startAnimate();
+    this.opacityVar = '100';
+    if(this.cardTemp.card_type ==='Monster'){
+      this.startAnimate('combat');
+    }else 
+    {
+      this.startAnimate('trap');
+    }
   }
 
   createPosition(){
@@ -85,7 +91,6 @@ export class MapComponent {
           if(this.PositionMap.get(i) == this.cardTemp.localID){
             this.changeState(false, i,0);
           } else if (this.cardTemp.localID == 8){
-            console.log("je suis là")
             sessionStorage.clear();
             this.getCards();
           } 
@@ -109,16 +114,16 @@ export class MapComponent {
     }
   }
 
-  animate(){
+  animate(result : string){
     requestAnimationFrame(()=> {
       setTimeout(() => {
-        this.animate();
+        this.animate(result);
       }, 1000/25);
       
     })
-    const combat = document.getElementById('imageRender') as HTMLImageElement | null;
+    const combat = document.getElementById(result) as HTMLImageElement | null;
     if(combat !=null){
-      combat!.src = 'assets/combat/'+ this.getCurrentIndexImage(this.currentImageIndex) + '.webp';
+      combat!.src = 'assets/'+result + '/' + this.getCurrentIndexImage(this.currentImageIndex) + '.webp';
       if(this.currentImageIndex < 25){
         this.currentImageIndex++;
       }else{
@@ -128,10 +133,8 @@ export class MapComponent {
     }
   }
 
-  startAnimate(){
-    this.animate()
+  startAnimate(result:string){
+    this.animate(result);
   }
-
 }
-
 
