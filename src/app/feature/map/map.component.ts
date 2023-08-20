@@ -20,15 +20,15 @@ export class MapComponent {
   opacityVar!:string;
   cardTemp!: Card;
   currentImageIndex:number = 0;
-  nbFloor : number = 1;
+  nbFloor! : number;
 //#endregion  
 
   constructor(private cardService: CardService, private router:Router){ }
 
   ngOnInit():void {
-    this.nbFloor =  1;
     this.getCards();
     this.createPosition();
+    this.initFloor();
     if(sessionStorage.getItem("event") != null){
       this.checkPosition();
     }
@@ -66,7 +66,9 @@ export class MapComponent {
       this.isActiveMap.set(index+3, false); 
     }
     if(index == 8){
-      this.nbFloor = this.nbFloor + 1;
+      this.nbFloor = JSON.parse(localStorage.getItem("floor") as string) + 1;
+      localStorage.setItem("floor", JSON.stringify(this.nbFloor));
+      
     }
   }
   
@@ -108,6 +110,14 @@ export class MapComponent {
     for(let i = 0; i<= this.cardTable.length; i++){
       this.isActiveMap.set(i, true);
     }
+  }
+
+  initFloor(){
+    this.nbFloor = 1;
+    if(localStorage.getItem("floor") === null)
+      localStorage.setItem("floor", JSON.stringify(this.nbFloor));
+    else 
+      localStorage.getItem("floor");
   }
 //#endregion
 

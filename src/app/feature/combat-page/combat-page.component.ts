@@ -189,6 +189,7 @@ export class CombatPageComponent {
 
     } else if (matchResult == 'defeat') {
       sessionStorage.clear();
+      localStorage.removeItem("floor");
       this.visibilityDefeatVar = 'visible';
       this.opacityVar=100;
       this.startAnimate('defeat', 'play-menu');

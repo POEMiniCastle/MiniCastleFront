@@ -17,22 +17,22 @@
     align-items: center;
 }
 
-#victory{
-    position: absolute;
-    z-index: 5;
-    text-align: center;
-    margin-left: 10%;
-    margin-top: 5%;
-    width: 75%;
-    visibility: var(--isHidden, hidden);
-    opacity: var(--isOpaq, 0);
-    transition-delay: 0.5s;
-    transition-property: all;
-    transition-timing-function: ease-in;
-    transition-duration: 0.2s;
-}
+// #victory{
+//     position: absolute;
+//     z-index: 5;
+//     text-align: center;
+//     margin-left: 10%;
+//     margin-top: 5%;
+//     width: 75%;
+//     visibility: var(--isHidden, hidden);
+//     opacity: var(--isOpaq, 0);
+//     transition-delay: 0.5s;
+//     transition-property: all;
+//     transition-timing-function: ease-in;
+//     transition-duration: 0.2s;
+// }
 
-#defeat{
+#defeat, #victory{
     position: absolute;
     z-index: 5;
     margin-left: 25%;
@@ -90,11 +90,29 @@ app-combat-log{
     #hero{
         margin-left: 15% ;
     }
+
+    app-combat-log{
+        display: none;
+    }
+
+    #defeat, #victory{
+        width: 150%;
+        margin-left: -20%;
+        margin-top: 15% !important;
+    }
 }
 
 @media (width < 800px) {  
     #hero{
-        margin-left: 0% ;
+        margin-left: 1% ;
+    }   
+}
+
+@media (width < 600px){
+    #defeat,#victory{
+        width: 150%;
+        margin-left: -20%;
+        margin-top: 55% !important;
     }
 }
 

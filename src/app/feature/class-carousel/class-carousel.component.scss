@@ -1,89 +1,37 @@
-// @media (width > 1600px) {
-//   .principal {
-//     position: relative !important;
-//     margin-top: 10vh !important;
-//     height: 60vh !important;
-//     width: 35vw !important;
-
-//   }
-// }
-
-// @media (width > 1399px) {
-//     .principal {
-//       position: relative !important;
-//       margin-top: 10vh !important;
-//       height: 60vh !important;
-//       width: 35vw !important;
-//     }
-//   }
-
-// @media (width < 1400px) {
-//   .principal {
-//     position: relative !important;
-//     margin-top: 10vh !important;
-//     height: 40vh !important;
-//     width: 90vw !important;
-//   }
-// }
-// @media (width < 1000px) {
-//   .principal {
-//     position: relative !important;
-//     margin-top: 10vh !important;
-//     height: 53vh !important;
-//     width: 35vw !important;
-//     width: 40vw !important;
-
-//   }
-// }
-// @media (width < 800px) {
-//   .principal {
-//     position: relative !important;
-//     margin-top: 10vh !important;
-//     height: 50vh !important;
-//     width: 100vw !important;
-
-//   }
-// }
-// @media (width < 500px) {
-//   .principal {
-//     position: relative !important;
-//     margin-top: 10vh !important;
-//     height: 50vh !important;
-//     width: 100vw !important;
-
-//   }
-// }
-
 ngb-carousel {
   padding-top: 2%;
   background-color: #e7e7e7;
   justify-content: center;
-  border-radius: 30px 30px 0px 0px;
+  border-radius: 30px 30px 30px 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
-// .principal {
-//   position: relative !important;
-//   margin-top: 10vh !important;
-//   height: 53vh !important;
-// }
 
 .stats {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  p{
+    font-family: 'Roboto';
+    font-weight: bold;
+    text-align: left;
+  }
 }
+
 img{
-  width: 20vw; 
+  width: 30vw; 
   padding-bottom: 5%
 }
 
-h2 {
-    font-size: calc(1.8rem + 1.30vw);
+h3 {
+    font-size: calc(1.5rem + 1.30vw);
     padding-top: 2%;
 }
+
 p{
     font-size: calc(0.3rem + 1.30vw);
 }
+
 .popoverTitle {
     font-size: calc(1rem + 1.30vw);
     text-align:center;
@@ -99,10 +47,19 @@ p{
 }
 
 .skill_description{
-  margin-bottom: 5%
+  margin-bottom: 5%;
+  margin-top: 5%;
+  font-size: calc(0.5rem + 0.5vw);
+  width: 20%;
+  height: 15%;
 }
+
 button{
   p{
     font-size: calc(0.5rem + 0.5vw);
   }
+}
+
+.base{
+  font-weight: lighter;
 }
