@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,6 +39,7 @@ import { TrapCardComponent } from './shared/card/trap-card/trap-card.component';
 import { CombatPageComponent } from './feature/combat-page/combat-page.component';
 import { ConnexionFormComponent } from './feature/connexion-form/connexion-form.component';
 import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
+import { TokenInterceptor } from './TokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,13 @@ import { PlayMenuComponent } from './feature/play-menu/play-menu.component';
     MatCardModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

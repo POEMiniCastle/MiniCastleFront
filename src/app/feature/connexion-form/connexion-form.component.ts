@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConnexionPlayer } from 'src/app/core/entities/ConnexionPlayer';
-import { Player } from 'src/app/core/entities/Player';
 import { PlayerService } from 'src/app/services/player/player.service';
+import jwt_decode from "jwt-decode";
+import { JwtToken } from 'src/app/core/entities/JwtToken';
+import { Jwt } from 'src/app/core/entities/Jwt';
 
 @Component({
   selector: 'app-connexion-form',
@@ -13,7 +15,6 @@ import { PlayerService } from 'src/app/services/player/player.service';
 })
 export class ConnexionFormComponent {
   form: UntypedFormGroup;
-  
   constructor(formBuilder: FormBuilder, private httpClient: HttpClient, private playerService: PlayerService, private router:Router) {
     this.form = formBuilder.group({
       username: new UntypedFormControl('', Validators.required),
@@ -28,8 +29,10 @@ export class ConnexionFormComponent {
   submitConnection(): void {
     this.playerService.connexion(new ConnexionPlayer(this.form.value.username, this.form.value.password))
     .subscribe({
-      next: (response: Player) => {
-        sessionStorage.setItem("player", JSON.stringify(response));
+      next: (response: JwtToken) => {
+        let decoded: Jwt = jwt_decode(response.token);
+        localStorage.setItem("player", JSON.stringify(decoded.player));
+        localStorage.setItem("token", response.token);
         this.router.navigate(['/play-menu']);
       },
       error: (err) => console.error(err)

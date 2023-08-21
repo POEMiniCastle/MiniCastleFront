@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RegistrationPlayer } from 'src/app/core/entities/RegistrationPlayer';
-import { Player } from 'src/app/core/entities/Player';
 import { PlayerService } from 'src/app/services/player/player.service';
 import { Router } from '@angular/router';
+import jwt_decode from "jwt-decode";
+import { JwtToken } from 'src/app/core/entities/JwtToken';
+import { Jwt } from 'src/app/core/entities/Jwt';
 
 
 @Component({
@@ -46,8 +48,10 @@ export class RegistrationFormComponent {
   submitRegistration() {
     this.playerService.register(new RegistrationPlayer(this.form.value.email, this.form.value.username, this.form.value.password))
     .subscribe({
-      next: (response: Player) => {
-        sessionStorage.setItem("player", JSON.stringify(response));
+      next: (response: JwtToken) => {
+        let decoded: Jwt = jwt_decode(response.token);
+        localStorage.setItem("player", JSON.stringify(decoded.player));
+        localStorage.setItem("token", response.token);
         this.router.navigate(['/play-menu']);
       },
       error: (err) => console.error(err)
